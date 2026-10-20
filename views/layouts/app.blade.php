@@ -7,6 +7,14 @@
   <base href="{{ \App\Helpers::basePath() }}">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('prasuna_theme');
+      if (savedTheme === 'candlelight') {
+        document.documentElement.setAttribute('data-theme', 'candlelight');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -104,6 +112,16 @@
             </div>
           </div>
 
+          <!-- Predictive Live Search Button -->
+          <button class="action-btn" id="search-toggle-btn" onclick="openSearchDrawer()" title="Search Silhouettes (Press /)" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+
+          <!-- Candlelight / Evening View Toggle -->
+          <button class="action-btn" id="theme-toggle-btn" onclick="toggleCandlelightTheme()" title="Switch to Candlelight / Evening View" aria-label="Toggle Candlelight Theme">
+            <span id="theme-toggle-icon" style="font-size:1.15rem;">🕯️</span>
+          </button>
+
           <!-- Size Guide Trigger -->
           <button class="action-btn" onclick="openSizeGuideModal()" title="Size Guide & Measurements" aria-label="Size Guide">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21.3 15.3l-6.6 6.6c-.4.4-1 .4-1.4 0l-11.6-11.6c-.4-.4-.4-1 0-1.4l6.6-6.6c.4-.4 1-.4 1.4 0l11.6 11.6c.4.4.4 1 0 1.4z"/><path d="M7 6l2 2"/><path d="M10 9l2 2"/><path d="M13 12l2 2"/><path d="M16 15l2 2"/></svg>
@@ -137,13 +155,20 @@
       <div class="brand-title" style="font-size:1.4rem;">PRASUNA</div>
       <button class="drawer-close" onclick="toggleMobileNav()">✕</button>
     </div>
-    <div style="padding: 24px; display:flex; flex-direction:column; gap:20px;">
+    <div style="padding: 24px; display:flex; flex-direction:column; gap:18px;">
+      <button onclick="toggleMobileNav(); openSearchDrawer();" style="display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; text-align:left; color:var(--color-gold-hover);">
+        <span>🔍</span> Search Silhouettes
+      </button>
+      <button onclick="toggleCandlelightTheme();" style="display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; text-align:left;">
+        <span id="mobile-theme-icon">🕯️</span> <span id="mobile-theme-label">Candlelight View</span>
+      </button>
+      <hr style="border:none; border-top:1px solid var(--color-border); margin:4px 0;">
       <a href="?page=home" style="font-size:1.1rem; font-weight:600;">Home</a>
       <a href="?page=shop" style="font-size:1.1rem; font-weight:600;">Silhouettes (Drop 08)</a>
       <a href="?page=drops" style="font-size:1.1rem; font-weight:600;">The Limited Drops</a>
       <a href="?page=atelier" style="font-size:1.1rem; font-weight:600;">Our Atelier & Story</a>
       <a href="?page=checkout" style="font-size:1.1rem; font-weight:600; color:var(--color-crimson);">Express Checkout</a>
-      <hr style="border:none; border-top:1px solid var(--color-border); margin:10px 0;">
+      <hr style="border:none; border-top:1px solid var(--color-border); margin:4px 0;">
       <div style="font-size:0.86rem; color:var(--color-muted);">
         <p>🌸 Nepali Slow Fashion</p>
         <p>No Repeat Prints • Worldwide Shipping</p>
@@ -445,6 +470,55 @@
     </div>
   </footer>
 
+  <!-- Predictive Live Search Drawer -->
+  <div class="search-backdrop" id="search-backdrop" onclick="closeSearchDrawer()"></div>
+  <aside class="search-drawer" id="search-drawer" role="dialog" aria-modal="true" aria-label="Search Silhouettes">
+    <div class="container-wide">
+      <div class="search-header-inner">
+        <div class="section-tag" style="margin:0;">✦ Predictive Archive Search • Drop 08</div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-size:0.75rem; color:var(--color-muted); display:inline-block; border:1px solid var(--color-border); padding:3px 10px; border-radius:4px; font-weight:600;">ESC to Close</span>
+          <button class="drawer-close" onclick="closeSearchDrawer()" aria-label="Close Search" style="font-size:1.3rem;">✕</button>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="search-input-wrap">
+        <div class="search-input-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <input type="text" id="live-search-input" class="search-main-input" placeholder="Search silhouettes, mul cotton, festive sets, zardozi, bell sleeves, corset back..." autocomplete="off" oninput="handleLiveSearchInput(this.value)">
+        <button type="button" id="search-clear-btn" class="search-clear-btn" onclick="clearLiveSearch()">✕</button>
+      </div>
+
+      <!-- Trending Search Pills -->
+      <div class="trending-pills-row">
+        <span style="font-size:0.75rem; font-weight:700; color:var(--color-muted); text-transform:uppercase; letter-spacing:0.06em;">Trending Searches:</span>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Gulabi Set')">Gulabi Set</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Mul Cotton')">Mul Cotton</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Bell Sleeves')">Bell Sleeves</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Corset Back')">Corset Back</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Sharara')">Dashain Sharara</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Zardozi')">Zardozi</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Noor Fuchsia')">Noor Fuchsia</button>
+        <button type="button" class="trending-pill" onclick="searchForTrending('Pooh Peplum')">Pooh Peplum</button>
+      </div>
+
+      <!-- Results Container -->
+      <div id="search-results-container" style="margin-top:24px;">
+        <div id="search-results-status" style="font-size:0.84rem; color:var(--color-muted); font-weight:600; margin-bottom:12px;"></div>
+        <div class="search-results-grid" id="search-results-grid">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Global Product Catalog Payload for Instant Live Search -->
+  <script>
+    window.PRASUNA_CATALOG = @json(\App\Data\Products::getAll());
+  </script>
   <script src="assets/js/app.js"></script>
   <script>
     function toggleMobileNav() {

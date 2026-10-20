@@ -506,6 +506,8 @@ document.addEventListener('DOMContentLoaded', () => {
   refreshDOMPrices();
   updateCartBadge();
   startCountdown();
+  initCandlelightTheme();
+  initHeroCarousel();
 
   // Currency Dropdown Toggle
   const currBtn = document.getElementById('currency-toggle-btn');
@@ -521,18 +523,216 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Global Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+    // Esc closes drawers & modals
+    if (e.key === 'Escape') {
+      closeSearchDrawer();
+      closeCartDrawer();
+      closeQuickView();
+      closeSizeGuideModal();
+      closeCustomMeasureModal();
+      closeStoryModal();
+      closeAtelierFilmModal();
+    }
+    // "/" opens Search Drawer when not already typing
+    if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+      e.preventDefault();
+      openSearchDrawer();
+    }
+  });
+
   // Close modals on backdrop click
-  document.querySelectorAll('.modal-backdrop').forEach(bd => {
+  document.querySelectorAll('.modal-backdrop, .drawer-backdrop, .search-backdrop').forEach(bd => {
     bd.addEventListener('click', (e) => {
       if (e.target === bd) {
         bd.classList.remove('active');
+        document.querySelectorAll('.modal-card, .search-drawer, .cart-drawer').forEach(el => el.classList.remove('active'));
         document.body.style.overflow = '';
       }
     });
   });
 });
 
-// Hero Multi-Look Interactive Switcher
+/* ==========================================================================
+   Candlelight / Evening View Luxury Theme Toggle
+   ========================================================================== */
+function initCandlelightTheme() {
+  const currentTheme = localStorage.getItem('prasuna_theme') || 'daylight';
+  applyThemeUI(currentTheme);
+}
+
+function applyThemeUI(theme) {
+  const icon = document.getElementById('theme-toggle-icon');
+  const mobIcon = document.getElementById('mobile-theme-icon');
+  const mobLabel = document.getElementById('mobile-theme-label');
+  
+  if (theme === 'candlelight') {
+    document.documentElement.setAttribute('data-theme', 'candlelight');
+    if (icon) icon.textContent = '☀️';
+    if (mobIcon) mobIcon.textContent = '☀️';
+    if (mobLabel) mobLabel.textContent = 'Daylight View';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (icon) icon.textContent = '🕯️';
+    if (mobIcon) mobIcon.textContent = '🕯️';
+    if (mobLabel) mobLabel.textContent = 'Candlelight View';
+  }
+}
+
+function toggleCandlelightTheme() {
+  const isCandlelight = document.documentElement.getAttribute('data-theme') === 'candlelight';
+  const newTheme = isCandlelight ? 'daylight' : 'candlelight';
+  
+  localStorage.setItem('prasuna_theme', newTheme);
+  applyThemeUI(newTheme);
+  
+  if (newTheme === 'candlelight') {
+    showToast('Entered Candlelight Evening View 🕯️');
+  } else {
+    showToast('Switched to Daylight View ☀️');
+  }
+}
+
+/* ==========================================================================
+   Predictive Live Search Engine
+   ========================================================================== */
+function openSearchDrawer() {
+  const drawer = document.getElementById('search-drawer');
+  const backdrop = document.getElementById('search-backdrop');
+  const input = document.getElementById('live-search-input');
+  
+  if (drawer && backdrop) {
+    drawer.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    if (input) {
+      setTimeout(() => input.focus(), 150);
+      if (!input.value.trim()) {
+        renderSearchCatalog(window.PRASUNA_CATALOG || [], 'Popular Heirlooms & Drop 08 Silhouettes:');
+      }
+    }
+  }
+}
+
+function closeSearchDrawer() {
+  const drawer = document.getElementById('search-drawer');
+  const backdrop = document.getElementById('search-backdrop');
+  if (drawer && backdrop) {
+    drawer.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function clearLiveSearch() {
+  const input = document.getElementById('live-search-input');
+  const clearBtn = document.getElementById('search-clear-btn');
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
+  if (clearBtn) clearBtn.classList.remove('visible');
+  renderSearchCatalog(window.PRASUNA_CATALOG || [], 'Popular Heirlooms & Drop 08 Silhouettes:');
+}
+
+function searchForTrending(keyword) {
+  const input = document.getElementById('live-search-input');
+  if (input) {
+    input.value = keyword;
+    handleLiveSearchInput(keyword);
+    input.focus();
+  }
+}
+
+function handleLiveSearchInput(query) {
+  const clearBtn = document.getElementById('search-clear-btn');
+  const trimmed = query.trim().toLowerCase();
+  
+  if (clearBtn) {
+    if (trimmed) {
+      clearBtn.classList.add('visible');
+    } else {
+      clearBtn.classList.remove('visible');
+    }
+  }
+
+  const catalog = window.PRASUNA_CATALOG || [];
+  if (!trimmed) {
+    renderSearchCatalog(catalog, 'Popular Heirlooms & Drop 08 Silhouettes:');
+    return;
+  }
+
+  const matches = catalog.filter(p => {
+    return (
+      (p.name && p.name.toLowerCase().includes(trimmed)) ||
+      (p.nepali_name && p.nepali_name.toLowerCase().includes(trimmed)) ||
+      (p.category && p.category.toLowerCase().includes(trimmed)) ||
+      (p.description && p.description.toLowerCase().includes(trimmed)) ||
+      (p.fabric && p.fabric.toLowerCase().includes(trimmed))
+    );
+  });
+
+  const statusText = matches.length > 0 
+    ? `Found ${matches.length} matching silhouette${matches.length > 1 ? 's' : ''} for "${query}":`
+    : `No silhouettes found matching "${query}". Try searching "Mul Cotton", "Sharara", or "Zardozi".`;
+
+  renderSearchCatalog(matches, statusText);
+}
+
+function renderSearchCatalog(items, statusText) {
+  const grid = document.getElementById('search-results-grid');
+  const status = document.getElementById('search-results-status');
+  if (!grid || !status) return;
+
+  status.textContent = statusText;
+  grid.innerHTML = '';
+
+  if (items.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 32px 0; text-align: center; color: var(--color-muted);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">🌸</div>
+        <div style="font-weight: 600; font-size: 1rem; color: var(--color-charcoal); margin-bottom: 4px;">
+          No matching archive pieces found
+        </div>
+        <p style="font-size: 0.85rem; max-width: 420px; margin: 0 auto 18px;">
+          All our silhouettes are limited slow-fashion creations. Browse the full Festive Edit to find your perfect fit.
+        </p>
+        <a href="?page=shop" class="btn btn-secondary btn-sm" onclick="closeSearchDrawer()">
+          Explore Full Collection &rarr;
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  items.forEach(prod => {
+    const card = document.createElement('a');
+    card.href = `?page=product&id=${encodeURIComponent(prod.id)}`;
+    card.className = 'search-result-card';
+    card.onclick = () => closeSearchDrawer();
+
+    card.innerHTML = `
+      <div class="search-thumb">
+        <img src="${prod.image}" alt="${prod.name}" loading="lazy">
+      </div>
+      <div class="search-info">
+        <span class="search-category-badge">${prod.category || 'Silhouettes'}</span>
+        <h4 class="search-title">${prod.name}</h4>
+        ${prod.nepali_name ? `<span style="font-family:var(--font-nepali); font-size:0.75rem; color:var(--color-muted);">${prod.nepali_name}</span>` : ''}
+        <span class="search-price" data-price-npr="${prod.price_npr}">
+          ${formatMoney(prod.price_npr)}
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ==========================================================================
+   Editorial Hero Multi-Look Carousel & Hotspot System
+   ========================================================================== */
 const HERO_LOOKS = [
   {
     badge: 'Look 01 • Iconic Fit',
@@ -541,10 +741,24 @@ const HERO_LOOKS = [
     meta: 'Olive Gold Raw Silk • Pure Zardozi',
     productId: 'gulabi-set',
     priceNpr: 14500,
+    swatch: 'assets/images/gulabi_rose_detail.jpg',
+    fabricTitle: 'Mulberry Raw Silk',
+    fabricSpecs: '18 Hrs Hand Zardozi',
+    fabricDna: '100% natural mulberry raw silk with zero synthetic blending. Hand-loomed on traditional wooden looms in Patan, Kathmandu.',
+    threadCount: '320 TPI',
+    naturalDye: 'Mineral Gold',
+    weight: '160 GSM',
     topTitle: 'Sweetheart Raw Silk Camisole',
     topPrice: 'Rs. 8,500',
+    topPriceNpr: 8500,
+    topDesc: 'Pure zardozi hand-embroidered bustier',
     bottomTitle: 'Flowing Pure Silk Palazzo',
-    bottomPrice: 'Rs. 6,000'
+    bottomPrice: 'Rs. 6,000',
+    bottomPriceNpr: 6000,
+    bottomDesc: 'High-waisted fluid tailoring',
+    sideTitle: 'Resham & Zari Slit Accent',
+    sidePrice: 'Artisanal Detail',
+    sideDesc: 'Scalloped hand-finished edge'
   },
   {
     badge: 'Look 02 • Mul Cotton Special',
@@ -553,10 +767,24 @@ const HERO_LOOKS = [
     meta: 'Pure Mul Cotton • Corset Lace-Up Back',
     productId: 'suhani-corset-set',
     priceNpr: 11800,
+    swatch: 'assets/images/suhani_corset_back.jpg',
+    fabricTitle: 'Mul Cotton & Organza',
+    fabricSpecs: 'Hand Applique & Flared Sleeves',
+    fabricDna: 'Featherlight pure mul cotton with organza flared bell sleeves and criss-cross corset back ties for an adjustable made-to-measure fit.',
+    threadCount: '280 TPI',
+    naturalDye: 'Blush Lilac Tint',
+    weight: '90 GSM',
     topTitle: 'Flared Bell-Sleeve Mul Tunic',
     topPrice: 'Rs. 7,200',
+    topPriceNpr: 7200,
+    topDesc: 'Artisanal applique & glass beadwork',
     bottomTitle: 'Breezy Blossom Pink Trousers',
-    bottomPrice: 'Rs. 4,600'
+    bottomPrice: 'Rs. 4,600',
+    bottomPriceNpr: 4600,
+    bottomDesc: 'Straight cut with elasticated comfort waist',
+    sideTitle: 'Lace-Up Corset Back',
+    sidePrice: 'Custom Fit',
+    sideDesc: 'Adjusts up to 2 inches to your body'
   },
   {
     badge: 'Look 03 • Dashain Heirloom',
@@ -565,20 +793,101 @@ const HERO_LOOKS = [
     meta: 'Pintuck Mul Cotton • Billowing Tiered Sharara',
     productId: 'saya-mul-cotton',
     priceNpr: 13200,
+    swatch: 'assets/images/saya_mul_cotton.jpg',
+    fabricTitle: 'Pintuck Mul Cotton',
+    fabricSpecs: 'Voluminous Tiered Sharara',
+    fabricDna: 'Multiple tiers of gathered mul cotton requiring 6.5 meters of fabric per set for fluid cinematic movement during festive dances.',
+    threadCount: '300 TPI',
+    naturalDye: 'Ivory & Saffron',
+    weight: '110 GSM',
     topTitle: 'Mul Cotton Corset Bodice',
     topPrice: 'Rs. 7,500',
+    topPriceNpr: 7500,
+    topDesc: 'Hand-pleated structure with soft lining',
     bottomTitle: 'Tiered Voluminous Sharara',
-    bottomPrice: 'Rs. 5,700'
+    bottomPrice: 'Rs. 5,700',
+    bottomPriceNpr: 5700,
+    bottomDesc: 'Double-flared hem for festive sway',
+    sideTitle: 'Gold Gota Border',
+    sidePrice: 'Hand Stitched',
+    sideDesc: 'Delicate metallic ribbon trim'
   }
 ];
 
-function switchHeroLook(index, btn) {
+let currentHeroIndex = 0;
+let heroAutoTimer = null;
+let heroProgressStep = 0;
+const HERO_DURATION_MS = 6000;
+const HERO_TICK_MS = 100;
+
+function initHeroCarousel() {
+  const showcase = document.getElementById('hero-showcase-wrap');
+  if (!showcase) return;
+
+  startHeroProgress();
+
+  // Pause on mouse hover or touch hold
+  showcase.addEventListener('mouseenter', pauseHeroProgress);
+  showcase.addEventListener('mouseleave', resumeHeroProgress);
+}
+
+function startHeroProgress() {
+  clearInterval(heroAutoTimer);
+  heroProgressStep = 0;
+  
+  heroAutoTimer = setInterval(() => {
+    heroProgressStep += (HERO_TICK_MS / HERO_DURATION_MS) * 100;
+    const bar = document.getElementById('hero-progress-bar');
+    if (bar) bar.style.width = `${Math.min(heroProgressStep, 100)}%`;
+
+    if (heroProgressStep >= 100) {
+      nextHeroLook(false);
+    }
+  }, HERO_TICK_MS);
+}
+
+function pauseHeroProgress() {
+  clearInterval(heroAutoTimer);
+}
+
+function resumeHeroProgress() {
+  startHeroProgress();
+}
+
+function prevHeroLook() {
+  let prevIdx = currentHeroIndex - 1;
+  if (prevIdx < 0) prevIdx = HERO_LOOKS.length - 1;
+  switchHeroLook(prevIdx);
+}
+
+function nextHeroLook(manual = true) {
+  let nextIdx = (currentHeroIndex + 1) % HERO_LOOKS.length;
+  switchHeroLook(nextIdx);
+}
+
+function switchHeroLook(index, btn = null) {
   const look = HERO_LOOKS[index];
   if (!look) return;
 
-  document.querySelectorAll('.hero-look-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  currentHeroIndex = index;
+  heroProgressStep = 0;
+  const bar = document.getElementById('hero-progress-bar');
+  if (bar) bar.style.width = '0%';
 
+  // Update Buttons
+  document.querySelectorAll('.hero-look-btn').forEach((b, idx) => {
+    if (idx === index) {
+      b.classList.add('active');
+    } else {
+      b.classList.remove('active');
+    }
+  });
+
+  // Update Counter
+  const lookNum = document.getElementById('hero-look-num');
+  if (lookNum) lookNum.textContent = `0${index + 1}`;
+
+  // Update Hero Image with fade transition
   const img = document.getElementById('hero-slide-img');
   if (img) {
     img.style.opacity = '0';
@@ -588,6 +897,7 @@ function switchHeroLook(index, btn) {
     }, 180);
   }
 
+  // Update Floating Card & Badge
   const badge = document.getElementById('hero-badge');
   if (badge) badge.textContent = look.badge;
 
@@ -596,18 +906,6 @@ function switchHeroLook(index, btn) {
 
   const cardMeta = document.getElementById('hero-card-meta');
   if (cardMeta) cardMeta.textContent = look.meta;
-
-  const topTitle = document.getElementById('hotspot-top-title');
-  if (topTitle) topTitle.textContent = look.topTitle;
-
-  const topPrice = document.getElementById('hotspot-top-price');
-  if (topPrice) topPrice.textContent = look.topPrice;
-
-  const bottomTitle = document.getElementById('hotspot-bottom-title');
-  if (bottomTitle) bottomTitle.textContent = look.bottomTitle;
-
-  const bottomPrice = document.getElementById('hotspot-bottom-price');
-  if (bottomPrice) bottomPrice.textContent = look.bottomPrice;
 
   const cardBtn = document.getElementById('hero-card-btn');
   if (cardBtn) {
@@ -623,7 +921,105 @@ function switchHeroLook(index, btn) {
       });
     };
   }
+
+  // Update Fabric Inspector
+  const swatchImg = document.getElementById('fabric-swatch-img');
+  if (swatchImg && look.swatch) swatchImg.src = look.swatch;
+
+  const fabricTitle = document.getElementById('fabric-title');
+  if (fabricTitle) fabricTitle.textContent = look.fabricTitle;
+
+  const fabricSpecs = document.getElementById('fabric-specs');
+  if (fabricSpecs) fabricSpecs.textContent = look.fabricSpecs;
+
+  const fabricDna = document.getElementById('fabric-dna-desc');
+  if (fabricDna) fabricDna.textContent = look.fabricDna;
+
+  const threadCount = document.getElementById('fabric-thread-count');
+  if (threadCount) threadCount.textContent = look.threadCount;
+
+  const dye = document.getElementById('fabric-dye');
+  if (dye) dye.textContent = look.naturalDye;
+
+  const weight = document.getElementById('fabric-weight');
+  if (weight) weight.textContent = look.weight;
+
+  // Update Hotspot Pins Data
+  const topTitle = document.getElementById('hotspot-top-title');
+  if (topTitle) topTitle.textContent = look.topTitle;
+
+  const topPrice = document.getElementById('hotspot-top-price');
+  if (topPrice) topPrice.textContent = formatMoney(look.topPriceNpr);
+
+  const topDesc = document.getElementById('hotspot-top-desc');
+  if (topDesc) topDesc.textContent = look.topDesc;
+
+  const bottomTitle = document.getElementById('hotspot-bottom-title');
+  if (bottomTitle) bottomTitle.textContent = look.bottomTitle;
+
+  const bottomPrice = document.getElementById('hotspot-bottom-price');
+  if (bottomPrice) bottomPrice.textContent = formatMoney(look.bottomPriceNpr);
+
+  const bottomDesc = document.getElementById('hotspot-bottom-desc');
+  if (bottomDesc) bottomDesc.textContent = look.bottomDesc;
+
+  const sideTitle = document.getElementById('hotspot-side-title');
+  if (sideTitle) sideTitle.textContent = look.sideTitle;
+
+  const sidePrice = document.getElementById('hotspot-side-price');
+  if (sidePrice) sidePrice.textContent = look.sidePrice;
+
+  // Reset any open modals/popovers
+  document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+  const fabricModal = document.getElementById('fabric-detail-modal');
+  if (fabricModal) fabricModal.classList.remove('show');
 }
+
+// Hotspot Pin Mobile/Click Toggle
+function toggleHotspotPin(pin, event) {
+  event.stopPropagation();
+  const isActive = pin.classList.contains('active');
+  document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+  if (!isActive) {
+    pin.classList.add('active');
+  }
+}
+
+// 1-Click Hotspot Piece Quick Add
+function addHotspotPieceToBag(pieceType, event) {
+  event.stopPropagation();
+  const look = HERO_LOOKS[currentHeroIndex];
+  if (!look) return;
+
+  const pieceName = pieceType === 'top' ? look.topTitle : look.bottomTitle;
+  const piecePrice = pieceType === 'top' ? look.topPriceNpr : look.bottomPriceNpr;
+
+  addToCart({
+    id: `${look.productId}-${pieceType}`,
+    name: `${pieceName} (${look.title})`,
+    color: 'Default',
+    size: 'S',
+    price_npr: piecePrice,
+    image: look.image,
+    qty: 1
+  });
+}
+
+// Fabric & Touch Inspector Popover
+function toggleFabricDetails(event) {
+  event.stopPropagation();
+  const modal = document.getElementById('fabric-detail-modal');
+  if (modal) {
+    modal.classList.toggle('show');
+  }
+}
+
+// Global click closes fabric modal and hotspots
+document.addEventListener('click', () => {
+  const fabricModal = document.getElementById('fabric-detail-modal');
+  if (fabricModal) fabricModal.classList.remove('show');
+  document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+});
 
 // Atelier Film Modal
 function openAtelierFilmModal() {

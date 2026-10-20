@@ -78,26 +78,74 @@
       <div class="hero-media">
         <div class="hero-image-wrap" id="hero-showcase-wrap">
           <span class="floating-badge" id="hero-badge">Look 01 • Iconic Fit</span>
+
+          <!-- Fabric & Touch Inspector Card -->
+          <div class="fabric-inspector-card" id="fabric-inspector" onclick="toggleFabricDetails(event)" title="Click to view artisan weave details">
+            <div class="fabric-swatch-thumb">
+              <img id="fabric-swatch-img" src="assets/images/gulabi_rose_detail.jpg" alt="Artisan Silk Weave">
+              <span class="fabric-swatch-zoom-icon">🔍</span>
+            </div>
+            <div class="fabric-info-col">
+              <span class="fabric-tag-label">✦ Touch Inspector</span>
+              <span class="fabric-material-title" id="fabric-title">Mulberry Raw Silk</span>
+              <span class="fabric-specs-snippet" id="fabric-specs">18 Hrs Hand Zardozi</span>
+            </div>
+
+            <!-- Expandable Detailed Weave Spec Popover -->
+            <div class="fabric-inspector-modal" id="fabric-detail-modal">
+              <div style="font-weight:700; color:var(--color-gold); font-size:0.85rem; margin-bottom:4px;">
+                ✦ Handloom Weave DNA
+              </div>
+              <p id="fabric-dna-desc" style="color:#DDD5CC; font-size:0.75rem; margin-bottom:10px; line-height:1.5;">
+                100% natural mulberry raw silk with zero synthetic blending. Hand-loomed on traditional wooden looms in Patan, Kathmandu.
+              </p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.72rem; color:#A89F95; border-top:1px solid rgba(255,255,255,0.12); padding-top:8px;">
+                <div>Thread Count: <strong style="color:#fff;" id="fabric-thread-count">320 TPI</strong></div>
+                <div>Natural Dye: <strong style="color:#fff;" id="fabric-dye">Mineral Gold</strong></div>
+                <div>Breathability: <strong style="color:#fff;">High</strong></div>
+                <div>Weight: <strong style="color:#fff;" id="fabric-weight">160 GSM</strong></div>
+              </div>
+            </div>
+          </div>
           
-          <img id="hero-slide-img" src="assets/images/hero_festive.jpg" alt="Prasuna Limited Silhouette" style="width:100%; height:100%; object-fit:cover; transition:opacity 0.3s ease;">
+          <img id="hero-slide-img" src="assets/images/hero_festive.jpg" alt="Prasuna Limited Silhouette" style="width:100%; height:100%; object-fit:cover; transition:opacity 0.28s ease;">
           
-          <!-- Hotspot Pin 1: Bodice -->
-          <div class="hotspot-pin" id="hero-pin-top" style="top: 38%; left: 48%;" title="Click to view tunic">
+          <!-- Hotspot Pin 1: Bodice / Camisole -->
+          <div class="hotspot-pin" id="hero-pin-top" style="top: 38%; left: 48%;" onclick="toggleHotspotPin(this, event)" title="Click to inspect silhouette top">
             <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>
             <div class="hotspot-popover" id="hero-popover-top">
               <strong id="hotspot-top-title">Sweetheart Raw Silk Camisole</strong>
-              <span style="color:var(--color-gold);" id="hotspot-top-price">Rs. 8,500 / $65</span>
-              <span style="font-size:0.68rem; color:#D3CBBF;">Hand zardozi gold floral embroidery</span>
+              <span style="color:var(--color-gold); font-weight:700;" id="hotspot-top-price">Rs. 8,500</span>
+              <span style="font-size:0.7rem; color:#D3CBBF;" id="hotspot-top-desc">Pure zardozi hand-embroidered bustier</span>
+              <button type="button" class="hotspot-quick-add" onclick="addHotspotPieceToBag('top', event)">
+                + Quick Bag
+              </button>
             </div>
           </div>
 
-          <!-- Hotspot Pin 2: Trouser -->
-          <div class="hotspot-pin" id="hero-pin-bottom" style="top: 74%; left: 52%;" title="Click to view trousers">
+          <!-- Hotspot Pin 2: Trouser / Sharara -->
+          <div class="hotspot-pin" id="hero-pin-bottom" style="top: 74%; left: 52%;" onclick="toggleHotspotPin(this, event)" title="Click to inspect bottoms">
             <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>
             <div class="hotspot-popover" id="hero-popover-bottom">
               <strong id="hotspot-bottom-title">Flowing Pure Silk Palazzo</strong>
-              <span style="color:var(--color-gold);" id="hotspot-bottom-price">Rs. 6,000 / $45</span>
-              <span style="font-size:0.68rem; color:#D3CBBF;">High-waisted billowing fluid cut</span>
+              <span style="color:var(--color-gold); font-weight:700;" id="hotspot-bottom-price">Rs. 6,000</span>
+              <span style="font-size:0.7rem; color:#D3CBBF;" id="hotspot-bottom-desc">High-waisted fluid tailoring</span>
+              <button type="button" class="hotspot-quick-add" onclick="addHotspotPieceToBag('bottom', event)">
+                + Quick Bag
+              </button>
+            </div>
+          </div>
+
+          <!-- Hotspot Pin 3: Slit / Sleeve Border -->
+          <div class="hotspot-pin" id="hero-pin-side" style="top: 56%; left: 28%;" onclick="toggleHotspotPin(this, event)" title="Click to inspect sleeve or slit">
+            <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>
+            <div class="hotspot-popover" id="hero-popover-side">
+              <strong id="hotspot-side-title">Resham & Zari Slit Accent</strong>
+              <span style="color:var(--color-gold); font-weight:700;" id="hotspot-side-price">Artisanal Detail</span>
+              <span style="font-size:0.7rem; color:#D3CBBF;">Scalloped hand-finished edge</span>
+              <button type="button" class="hotspot-quick-add" onclick="openAtelierFilmModal()">
+                ✦ Watch Craft Film
+              </button>
             </div>
           </div>
 
@@ -121,18 +169,36 @@
           </div>
         </div>
 
-        <!-- Multi-Look Switcher Buttons -->
-        <div class="hero-look-tabs">
-          <button type="button" class="hero-look-btn active" onclick="switchHeroLook(0, this)">
-            <span>01</span> Gulabi Slit
-          </button>
-          <button type="button" class="hero-look-btn" onclick="switchHeroLook(1, this)">
-            <span>02</span> Suhani Mul
-          </button>
-          <button type="button" class="hero-look-btn" onclick="switchHeroLook(2, this)">
-            <span>03</span> Saya Sharara
-          </button>
+        <!-- Editorial Hero Carousel Controls & Pagination -->
+        <div class="hero-controls-bar">
+          <div class="hero-pagination-counter">
+            <span class="active-num" id="hero-look-num">01</span>
+            <span class="total-num">/ 03</span>
+          </div>
+
+          <div class="hero-progress-container">
+            <div class="hero-progress-fill" id="hero-progress-bar"></div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button type="button" class="hero-nav-arrow" onclick="prevHeroLook()" aria-label="Previous Look">‹</button>
+            <button type="button" class="hero-nav-arrow" onclick="nextHeroLook()" aria-label="Next Look">›</button>
+          </div>
+
+          <!-- Multi-Look Switcher Buttons -->
+          <div class="hero-look-tabs">
+            <button type="button" class="hero-look-btn active" id="look-btn-0" onclick="switchHeroLook(0, this)">
+              <span>01</span> Gulabi Slit
+            </button>
+            <button type="button" class="hero-look-btn" id="look-btn-1" onclick="switchHeroLook(1, this)">
+              <span>02</span> Suhani Mul
+            </button>
+            <button type="button" class="hero-look-btn" id="look-btn-2" onclick="switchHeroLook(2, this)">
+              <span>03</span> Saya Sharara
+            </button>
+          </div>
         </div>
+
       </div>
 
     </div>
@@ -325,6 +391,172 @@
         </div>
       @endforeach
     </div>
+  </div>
+</section>
+
+<!-- Global Social Proof & Client Reviews (Loved in 18+ Countries) -->
+<section class="reviews-section" aria-label="Global Client Reviews">
+  <div class="container-wide">
+    
+    <div class="section-header">
+      <span class="section-tag">Global Client Voices • 18+ Countries</span>
+      <h2 class="section-title">Loved in Kathmandu, Sydney, London & Dallas</h2>
+      <p class="section-desc">
+        Real stories from women who cherish artisanal slow fashion. Made-to-measure precision, heirloom handlooms, and zero repeat designs.
+      </p>
+    </div>
+
+    <!-- Trust Stats Strip -->
+    <div class="reviews-stats-strip">
+      <div class="reviews-stat-item">
+        <div class="reviews-stat-number">4.97 ★</div>
+        <div class="reviews-stat-label">Average Client Rating</div>
+      </div>
+      <div class="reviews-stat-item">
+        <div class="reviews-stat-number">18+</div>
+        <div class="reviews-stat-label">Countries Delivered</div>
+      </div>
+      <div class="reviews-stat-item">
+        <div class="reviews-stat-number">98.4%</div>
+        <div class="reviews-stat-label">Custom Fit Accuracy</div>
+      </div>
+      <div class="reviews-stat-item">
+        <div class="reviews-stat-number">3-7 Days</div>
+        <div class="reviews-stat-label">DHL Express Worldwide</div>
+      </div>
+    </div>
+
+    <!-- Testimonial Cards Grid -->
+    <div class="reviews-grid">
+      
+      <!-- Review 1: Kathmandu -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">AS</div>
+            <div>
+              <div class="review-name">Alisha Shrestha</div>
+              <div class="review-location">🇳🇵 Kathmandu, Jhamsikhel</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "Wore the Gulabi Front-Slit Set for my sister's reception. The raw silk drape is breathtaking in person. Zero loose threads, and knowing it won't be repeated makes it feel so intimate and special."
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Gulabi Front-Slit Set</span>
+          <span class="verified-pill">✓ Verified Buyer</span>
+        </div>
+      </div>
+
+      <!-- Review 2: Sydney -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">PT</div>
+            <div>
+              <div class="review-name">Prerana Thapa</div>
+              <div class="review-location">🇦🇺 Sydney, Surry Hills</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "Ordering from Nepal to Australia was seamless with DHL tracking. The custom bust & waist tailoring was spot on without needing any local alterations. The lavender packaging note made my entire week!"
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Suhani Mul Cotton Set</span>
+          <span class="verified-pill">✓ International Client</span>
+        </div>
+      </div>
+
+      <!-- Review 3: London -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">SK</div>
+            <div>
+              <div class="review-name">Sonia Khadka</div>
+              <div class="review-location">🇬🇧 London, Kensington</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "The bell sleeves on the Suhani tunic are pure poetry. Lightweight, luxurious, breathable. Prasuna's slow fashion philosophy is exactly what the modern festive wardrobe needs."
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Saya Mul Cotton Sharara</span>
+          <span class="verified-pill">✓ International Client</span>
+        </div>
+      </div>
+
+      <!-- Review 4: Dallas -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">BG</div>
+            <div>
+              <div class="review-name">Bina Gurung</div>
+              <div class="review-location">🇺🇸 Dallas, Texas</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "The Dashain sharara arrived 2 days earlier than scheduled. The zardozi embroidery sparkles under evening lights like real gold dust. Truly museum-grade Himalayan craftsmanship."
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Noor Fuchsia Mirrorwork</span>
+          <span class="verified-pill">✓ International Client</span>
+        </div>
+      </div>
+
+      <!-- Review 5: Toronto -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">TD</div>
+            <div>
+              <div class="review-name">Tenzin Dolkar</div>
+              <div class="review-location">🇨🇦 Toronto, Ontario</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "Third drop I've bought from. Every piece comes with its own keepsake garment care letter and dried petals. The corset lace-up back makes sizing so forgiving and flattering."
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Zoya Handloom Set</span>
+          <span class="verified-pill">✓ 3rd Drop Collector</span>
+        </div>
+      </div>
+
+      <!-- Review 6: Melbourne -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-client-meta">
+            <div class="review-avatar-wrap">AM</div>
+            <div>
+              <div class="review-name">Aayusha M.</div>
+              <div class="review-location">🇦🇺 Melbourne, Victoria</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <p class="review-quote">
+          "The yellow peplum set has that effortless blend of Kathmandu tradition and European tailoring. Received countless compliments at a summer wedding in the Yarra Valley."
+        </p>
+        <div class="review-card-bottom">
+          <span class="review-piece-tag">Wore: Pooh Peplum Co-Ord</span>
+          <span class="verified-pill">✓ International Client</span>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </section>
 

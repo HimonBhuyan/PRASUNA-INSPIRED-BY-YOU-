@@ -161,6 +161,36 @@
     </div>
   </div>
 
+  <!-- Sticky Quick-Add Bar on Scroll -->
+  <aside class="sticky-quick-bar" id="sticky-quick-bar" aria-label="Quick Add to Bag Bar">
+    <div class="container-wide">
+      <div class="sticky-bar-inner">
+        <div class="sticky-product-meta">
+          <div class="sticky-thumb">
+            <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" id="sticky-bar-thumb">
+          </div>
+          <div>
+            <div class="sticky-title">{{ $product['name'] }}</div>
+            <div class="sticky-price" data-price-npr="{{ $product['price_npr'] }}">
+              {{ \App\Helpers::formatPrice($product['price_npr'], $currency) }}
+            </div>
+          </div>
+        </div>
+
+        <div class="sticky-actions-group">
+          <select class="sticky-size-select" id="sticky-size-picker" onchange="syncStickySize(this.value)">
+            @foreach($product['sizes'] as $s)
+              <option value="{{ $s }}" {{ $s === 'S' ? 'selected' : '' }}>Size: {{ $s }}</option>
+            @endforeach
+          </select>
+          <button type="button" class="btn btn-crimson btn-sm" onclick="addCurrentProductToBag()" style="white-space:nowrap;">
+            + Add To Bag
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
 </div>
 
 <script>
@@ -170,6 +200,8 @@
 
   function switchDetailImage(src, btn) {
     document.getElementById('detail-main-img').src = src;
+    const stickyThumb = document.getElementById('sticky-bar-thumb');
+    if (stickyThumb) stickyThumb.src = src;
     document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
   }
@@ -181,6 +213,8 @@
     btn.style.borderColor = 'var(--color-charcoal)';
     if (imgSrc) {
       document.getElementById('detail-main-img').src = imgSrc;
+      const stickyThumb = document.getElementById('sticky-bar-thumb');
+      if (stickyThumb) stickyThumb.src = imgSrc;
     }
   }
 
@@ -190,7 +224,26 @@
     document.querySelectorAll('.size-pill').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
 
+    const picker = document.getElementById('sticky-size-picker');
+    if (picker) picker.value = size;
+
     if (size.includes('Custom')) {
+      openCustomMeasureModal();
+    }
+  }
+
+  function syncStickySize(sz) {
+    chosenDetailSize = sz;
+    const pills = document.querySelectorAll('.size-pill');
+    pills.forEach(p => {
+      if (p.textContent.trim() === sz) {
+        p.classList.add('active');
+      } else {
+        p.classList.remove('active');
+      }
+    });
+    document.getElementById('selected-size-label').textContent = sz;
+    if (sz.includes('Custom')) {
       openCustomMeasureModal();
     }
   }
@@ -218,6 +271,17 @@
       icon.textContent = '−';
     }
   }
+
+  // Scroll listener for Sticky Quick-Add Bar
+  window.addEventListener('scroll', () => {
+    const bar = document.getElementById('sticky-quick-bar');
+    if (!bar) return;
+    if (window.scrollY > 380) {
+      bar.classList.add('visible');
+    } else {
+      bar.classList.remove('visible');
+    }
+  });
 </script>
 
 @endsection
