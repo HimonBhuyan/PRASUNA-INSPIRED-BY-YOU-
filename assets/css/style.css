@@ -624,6 +624,130 @@ h1, h2, h3, h4, .font-serif {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   backdrop-filter: blur(6px);
+  z-index: 4;
+}
+
+/* Hero Hotspot Pins */
+.hotspot-pin {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.hotspot-pin:hover {
+  transform: scale(1.15);
+}
+
+.hotspot-pin::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold);
+  animation: hotspotPulse 2.2s infinite;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(0.85); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hotspot-popover {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(25, 23, 22, 0.94);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-lg);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hotspot-pin:hover .hotspot-popover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* Scarcity Bar in Hero */
+.scarcity-wrap {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.scarcity-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 5px;
+}
+
+.scarcity-track {
+  width: 100%;
+  height: 5px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.scarcity-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-crimson));
+  border-radius: var(--radius-full);
+}
+
+/* Hero Slider Tabs */
+.hero-look-tabs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hero-look-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.76rem;
+  font-weight: 600;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-charcoal);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.hero-look-btn:hover,
+.hero-look-btn.active {
+  background: var(--color-charcoal);
+  color: #fff;
+  border-color: var(--color-charcoal);
 }
 
 /* ==========================================================================

@@ -531,3 +531,113 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Hero Multi-Look Interactive Switcher
+const HERO_LOOKS = [
+  {
+    badge: 'Look 01 • Iconic Fit',
+    image: 'assets/images/hero_festive.jpg',
+    title: 'Gulabi Front-Slit Set',
+    meta: 'Olive Gold Raw Silk • Pure Zardozi',
+    productId: 'gulabi-set',
+    priceNpr: 14500,
+    topTitle: 'Sweetheart Raw Silk Camisole',
+    topPrice: 'Rs. 8,500',
+    bottomTitle: 'Flowing Pure Silk Palazzo',
+    bottomPrice: 'Rs. 6,000'
+  },
+  {
+    badge: 'Look 02 • Mul Cotton Special',
+    image: 'assets/images/suhani_lilac.jpg',
+    title: 'Suhani Applique & Bell-Sleeve Set',
+    meta: 'Pure Mul Cotton • Corset Lace-Up Back',
+    productId: 'suhani-corset-set',
+    priceNpr: 11800,
+    topTitle: 'Flared Bell-Sleeve Mul Tunic',
+    topPrice: 'Rs. 7,200',
+    bottomTitle: 'Breezy Blossom Pink Trousers',
+    bottomPrice: 'Rs. 4,600'
+  },
+  {
+    badge: 'Look 03 • Dashain Heirloom',
+    image: 'assets/images/saya_mul_cotton.jpg',
+    title: 'Saya Corset & Tiered Sharara',
+    meta: 'Pintuck Mul Cotton • Billowing Tiered Sharara',
+    productId: 'saya-mul-cotton',
+    priceNpr: 13200,
+    topTitle: 'Mul Cotton Corset Bodice',
+    topPrice: 'Rs. 7,500',
+    bottomTitle: 'Tiered Voluminous Sharara',
+    bottomPrice: 'Rs. 5,700'
+  }
+];
+
+function switchHeroLook(index, btn) {
+  const look = HERO_LOOKS[index];
+  if (!look) return;
+
+  document.querySelectorAll('.hero-look-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  const img = document.getElementById('hero-slide-img');
+  if (img) {
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = look.image;
+      img.style.opacity = '1';
+    }, 180);
+  }
+
+  const badge = document.getElementById('hero-badge');
+  if (badge) badge.textContent = look.badge;
+
+  const cardTitle = document.getElementById('hero-card-title');
+  if (cardTitle) cardTitle.textContent = look.title;
+
+  const cardMeta = document.getElementById('hero-card-meta');
+  if (cardMeta) cardMeta.textContent = look.meta;
+
+  const topTitle = document.getElementById('hotspot-top-title');
+  if (topTitle) topTitle.textContent = look.topTitle;
+
+  const topPrice = document.getElementById('hotspot-top-price');
+  if (topPrice) topPrice.textContent = look.topPrice;
+
+  const bottomTitle = document.getElementById('hotspot-bottom-title');
+  if (bottomTitle) bottomTitle.textContent = look.bottomTitle;
+
+  const bottomPrice = document.getElementById('hotspot-bottom-price');
+  if (bottomPrice) bottomPrice.textContent = look.bottomPrice;
+
+  const cardBtn = document.getElementById('hero-card-btn');
+  if (cardBtn) {
+    cardBtn.onclick = function() {
+      addToCart({
+        id: look.productId,
+        name: look.title,
+        color: 'Default',
+        size: 'S',
+        price_npr: look.priceNpr,
+        image: look.image,
+        qty: 1
+      });
+    };
+  }
+}
+
+// Atelier Film Modal
+function openAtelierFilmModal() {
+  const modal = document.getElementById('atelier-film-modal');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeAtelierFilmModal() {
+  const modal = document.getElementById('atelier-film-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}

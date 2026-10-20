@@ -22,11 +22,11 @@
           Slow fashion heirlooms handcrafted in Kathmandu. Lustrous raw silks, delicate zardozi embroidery, and modern Indo-western cuts. Each piece is strictly limited — <strong>no repeat prints, ever.</strong>
         </p>
 
-        <!-- Live Drop Countdown -->
+        <!-- Live Drop Countdown & Scarcity Meter -->
         <div class="drop-countdown-box">
           <div class="countdown-label">
             <span><span>🌸</span> Drop 08 Archive Closes In</span>
-            <span style="font-size:0.7rem; color:var(--color-muted);">Limited Inventory</span>
+            <span style="font-size:0.7rem; color:var(--color-crimson); font-weight:700;">84% Claimed</span>
           </div>
           <div class="countdown-timer">
             <div class="timer-unit">
@@ -49,6 +49,17 @@
               <div class="timer-text">Secs</div>
             </div>
           </div>
+
+          <!-- Real-time Scarcity Tracker -->
+          <div class="scarcity-wrap">
+            <div class="scarcity-header">
+              <span>Limited Batch Allocation</span>
+              <span>Only 6 Pieces Left</span>
+            </div>
+            <div class="scarcity-track">
+              <div class="scarcity-bar" style="width: 84%;"></div>
+            </div>
+          </div>
         </div>
 
         <!-- Call to Actions -->
@@ -56,24 +67,47 @@
           <a href="?page=shop" class="btn btn-primary">
             Shop Drop 08 (Festive)
           </a>
-          <a href="?page=atelier" class="btn btn-secondary">
-            Our Story & Atelier
-          </a>
+          <button type="button" class="btn btn-secondary" onclick="openAtelierFilmModal()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Watch Atelier Film
+          </button>
         </div>
       </div>
 
-      <!-- Right Editorial Hero Visual -->
+      <!-- Right Editorial Hero Visual (Multi-Look Showcase) -->
       <div class="hero-media">
-        <div class="hero-image-wrap">
-          <span class="floating-badge">Drop 08 Iconic Fit</span>
-          <img src="assets/images/hero_festive.jpg" alt="Gulabi Embroidered Front-Slit Set in Olive Gold">
+        <div class="hero-image-wrap" id="hero-showcase-wrap">
+          <span class="floating-badge" id="hero-badge">Look 01 • Iconic Fit</span>
           
+          <img id="hero-slide-img" src="assets/images/hero_festive.jpg" alt="Prasuna Limited Silhouette" style="width:100%; height:100%; object-fit:cover; transition:opacity 0.3s ease;">
+          
+          <!-- Hotspot Pin 1: Bodice -->
+          <div class="hotspot-pin" id="hero-pin-top" style="top: 38%; left: 48%;" title="Click to view tunic">
+            <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>
+            <div class="hotspot-popover" id="hero-popover-top">
+              <strong id="hotspot-top-title">Sweetheart Raw Silk Camisole</strong>
+              <span style="color:var(--color-gold);" id="hotspot-top-price">Rs. 8,500 / $65</span>
+              <span style="font-size:0.68rem; color:#D3CBBF;">Hand zardozi gold floral embroidery</span>
+            </div>
+          </div>
+
+          <!-- Hotspot Pin 2: Trouser -->
+          <div class="hotspot-pin" id="hero-pin-bottom" style="top: 74%; left: 52%;" title="Click to view trousers">
+            <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>
+            <div class="hotspot-popover" id="hero-popover-bottom">
+              <strong id="hotspot-bottom-title">Flowing Pure Silk Palazzo</strong>
+              <span style="color:var(--color-gold);" id="hotspot-bottom-price">Rs. 6,000 / $45</span>
+              <span style="font-size:0.68rem; color:#D3CBBF;">High-waisted billowing fluid cut</span>
+            </div>
+          </div>
+
+          <!-- Floating Product Card at Bottom -->
           <div class="hero-floating-card">
             <div>
-              <div class="floating-product-title">Gulabi Front-Slit Set</div>
-              <div class="floating-product-meta">Olive Gold Raw Silk • Pure Zardozi</div>
+              <div class="floating-product-title" id="hero-card-title">Gulabi Front-Slit Set</div>
+              <div class="floating-product-meta" id="hero-card-meta">Olive Gold Raw Silk • Pure Zardozi</div>
             </div>
-            <button type="button" class="btn btn-crimson btn-sm" onclick='addToCart({
+            <button type="button" class="btn btn-crimson btn-sm" id="hero-card-btn" onclick='addToCart({
               id: "gulabi-set",
               name: "Gulabi Embroidered Front-Slit Set",
               color: "Olive Antique Gold",
@@ -85,6 +119,19 @@
               + Quick Bag
             </button>
           </div>
+        </div>
+
+        <!-- Multi-Look Switcher Buttons -->
+        <div class="hero-look-tabs">
+          <button type="button" class="hero-look-btn active" onclick="switchHeroLook(0, this)">
+            <span>01</span> Gulabi Slit
+          </button>
+          <button type="button" class="hero-look-btn" onclick="switchHeroLook(1, this)">
+            <span>02</span> Suhani Mul
+          </button>
+          <button type="button" class="hero-look-btn" onclick="switchHeroLook(2, this)">
+            <span>03</span> Saya Sharara
+          </button>
         </div>
       </div>
 

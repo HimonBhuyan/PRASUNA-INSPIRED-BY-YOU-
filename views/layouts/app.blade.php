@@ -343,6 +343,35 @@
     </div>
   </div>
 
+  <!-- Atelier Film Modal -->
+  <div class="modal-backdrop" id="atelier-film-modal">
+    <div class="modal-card" style="max-width:760px; background:#161413; color:#F5EFEB; border-radius:var(--radius-lg); overflow:hidden;">
+      <button class="modal-close-btn" style="background:rgba(255,255,255,0.2); color:#fff;" onclick="closeAtelierFilmModal()">✕</button>
+      <div style="position:relative; aspect-ratio:16/9; overflow:hidden;">
+        <img src="assets/images/atelier_crafting.jpg" alt="Kathmandu Atelier Film" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:32px;">
+          <div style="color:var(--color-gold); font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:6px;">
+            ✦ The Stitches of Kathmandu • Documentary Short
+          </div>
+          <h2 class="font-serif" style="color:#fff; font-size:1.8rem; margin-bottom:8px;">
+            Inside the Prasuna Workshop
+          </h2>
+          <p style="color:#D2CBC4; font-size:0.88rem; max-width:560px; line-height:1.6; margin-bottom:18px;">
+            Watch master didis and pattern cutters transform pure handloom raw silks into limited heirlooms. No assembly lines. Just human hands and generational pride.
+          </p>
+          <div style="display:flex; gap:14px; align-items:center;">
+            <a href="?page=atelier" class="btn btn-crimson btn-sm" onclick="closeAtelierFilmModal()">
+              Read The Full Story
+            </a>
+            <span style="font-size:0.76rem; color:#A79F97;">
+              🎵 Background: Sitar & Rain Ambient
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container-wide">
