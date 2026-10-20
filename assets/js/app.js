@@ -1119,3 +1119,19 @@ window.addEventListener('scroll', () => {
     }
   }
 }, { passive: true });
+
+// Story Marquee pause on mobile touch
+document.addEventListener('DOMContentLoaded', () => {
+  const marqueeWrap = document.getElementById('stories-marquee-wrap');
+  if (marqueeWrap) {
+    const track = marqueeWrap.querySelector('.stories-marquee-track');
+    if (track) {
+      marqueeWrap.addEventListener('touchstart', () => {
+        track.style.animationPlayState = 'paused';
+      }, { passive: true });
+      marqueeWrap.addEventListener('touchend', () => {
+        track.style.animationPlayState = 'running';
+      }, { passive: true });
+    }
+  }
+});

@@ -211,70 +211,135 @@
   </div>
 </section>
 
-<!-- Instagram Stories Highlight Bubbles -->
+<!-- Instagram Stories Highlight Bubbles - Continuous Infinite Marquee -->
 <section class="stories-section" aria-label="Brand Stories">
   <div class="container-wide">
-    <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-muted); margin-bottom:12px;">
-      ✦ Highlights from our Studio & Archives
+    <div class="stories-header">
+      <span class="stories-header-tag">✦ Highlights from our Studio & Archives ✦</span>
     </div>
-    <div class="stories-row">
-      
-      <button class="story-bubble" onclick="openStoryModal('suhani')">
-        <div class="story-ring">
-          <img src="assets/images/suhani_corset_back.jpg" alt="Suhani Set Corset Back" class="story-avatar">
-        </div>
-        <span class="story-name">✨ Suhani Set ✨</span>
-      </button>
 
-      <button class="story-bubble" onclick="openStoryModal('saya')">
-        <div class="story-ring">
-          <img src="assets/images/saya_mul_cotton.jpg" alt="Saya Mul Cotton Sharara" class="story-avatar">
-        </div>
-        <span class="story-name">✨ Saya Mul Cotton ✨</span>
-      </button>
+    <div class="stories-marquee-wrapper" id="stories-marquee-wrap">
+      <div class="stories-marquee-track">
+        
+        <!-- Track Group 1 -->
+        <div class="stories-marquee-group">
+          <button type="button" class="story-bubble" onclick="openStoryModal('suhani')">
+            <div class="story-ring">
+              <img src="assets/images/suhani_corset_back.jpg" alt="Suhani Set Corset Back" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Suhani Set ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('zoya')">
-        <div class="story-ring">
-          <img src="assets/images/zoya_handloom.jpg" alt="Zoya Handloom Set" class="story-avatar">
-        </div>
-        <span class="story-name">✨ Zoya Handloom ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('saya')">
+            <div class="story-ring">
+              <img src="assets/images/saya_mul_cotton.jpg" alt="Saya Mul Cotton Sharara" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Saya Mul Cotton ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('gulabi')">
-        <div class="story-ring">
-          <img src="assets/images/hero_festive.jpg" alt="Gulabi Set Story" class="story-avatar">
-        </div>
-        <span class="story-name">✨ GULABI ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('zoya')">
+            <div class="story-ring">
+              <img src="assets/images/zoya_handloom.jpg" alt="Zoya Handloom Set" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Zoya Handloom ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('noor')">
-        <div class="story-ring">
-          <img src="assets/images/noor_fuchsia.jpg" alt="Noor Set Story" class="story-avatar">
-        </div>
-        <span class="story-name">✨ NOOR ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('gulabi')">
+            <div class="story-ring">
+              <img src="assets/images/hero_festive.jpg" alt="Gulabi Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ GULABI ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('pooh')">
-        <div class="story-ring">
-          <img src="assets/images/pooh_yellow.jpg" alt="Pooh Set Story" class="story-avatar">
-        </div>
-        <span class="story-name">✨ POOH SET ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('noor')">
+            <div class="story-ring">
+              <img src="assets/images/noor_fuchsia.jpg" alt="Noor Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ NOOR ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('loves')">
-        <div class="story-ring">
-          <img src="assets/images/packaging_unboxing.jpg" alt="Packaging Story" class="story-avatar">
-        </div>
-        <span class="story-name">✨ LOVES (Care) ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('pooh')">
+            <div class="story-ring">
+              <img src="assets/images/pooh_yellow.jpg" alt="Pooh Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ POOH SET ✨</span>
+          </button>
 
-      <button class="story-bubble" onclick="openStoryModal('atelier')">
-        <div class="story-ring">
-          <img src="assets/images/atelier_crafting.jpg" alt="Atelier Story" class="story-avatar">
-        </div>
-        <span class="story-name">✨ Store Unfiltered ✨</span>
-      </button>
+          <button type="button" class="story-bubble" onclick="openStoryModal('loves')">
+            <div class="story-ring">
+              <img src="assets/images/packaging_unboxing.jpg" alt="Packaging Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ LOVES (Care) ✨</span>
+          </button>
 
+          <button type="button" class="story-bubble" onclick="openStoryModal('atelier')">
+            <div class="story-ring">
+              <img src="assets/images/atelier_crafting.jpg" alt="Atelier Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Store Unfiltered ✨</span>
+          </button>
+        </div>
+
+        <!-- Track Group 2 (Duplicate for Seamless Infinite Marquee) -->
+        <div class="stories-marquee-group" aria-hidden="true">
+          <button type="button" class="story-bubble" onclick="openStoryModal('suhani')">
+            <div class="story-ring">
+              <img src="assets/images/suhani_corset_back.jpg" alt="Suhani Set Corset Back" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Suhani Set ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('saya')">
+            <div class="story-ring">
+              <img src="assets/images/saya_mul_cotton.jpg" alt="Saya Mul Cotton Sharara" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Saya Mul Cotton ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('zoya')">
+            <div class="story-ring">
+              <img src="assets/images/zoya_handloom.jpg" alt="Zoya Handloom Set" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Zoya Handloom ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('gulabi')">
+            <div class="story-ring">
+              <img src="assets/images/hero_festive.jpg" alt="Gulabi Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ GULABI ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('noor')">
+            <div class="story-ring">
+              <img src="assets/images/noor_fuchsia.jpg" alt="Noor Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ NOOR ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('pooh')">
+            <div class="story-ring">
+              <img src="assets/images/pooh_yellow.jpg" alt="Pooh Set Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ POOH SET ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('loves')">
+            <div class="story-ring">
+              <img src="assets/images/packaging_unboxing.jpg" alt="Packaging Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ LOVES (Care) ✨</span>
+          </button>
+
+          <button type="button" class="story-bubble" onclick="openStoryModal('atelier')">
+            <div class="story-ring">
+              <img src="assets/images/atelier_crafting.jpg" alt="Atelier Story" class="story-avatar">
+            </div>
+            <span class="story-name">✨ Store Unfiltered ✨</span>
+          </button>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
