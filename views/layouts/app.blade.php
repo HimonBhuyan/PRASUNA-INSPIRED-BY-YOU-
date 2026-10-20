@@ -214,7 +214,10 @@
         <span>Shopping Bag</span>
         <span class="pill-badge cart-count-badge" style="display:none;">0</span>
       </h2>
-      <button class="drawer-close" onclick="closeCartDrawer()" aria-label="Close Shopping Bag">✕</button>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <button type="button" class="cart-clear-btn" id="cart-clear-btn" onclick="clearCart()" style="display:none;" title="Clear all items from bag">Clear All</button>
+        <button class="drawer-close" onclick="closeCartDrawer()" aria-label="Close Shopping Bag">✕</button>
+      </div>
     </div>
 
     <!-- Free Shipping Progress Tracker -->

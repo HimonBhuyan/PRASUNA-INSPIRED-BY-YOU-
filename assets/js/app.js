@@ -172,6 +172,11 @@ function renderCart() {
 
   if (!container) return;
 
+  const clearBtn = document.getElementById('cart-clear-btn');
+  if (clearBtn) {
+    clearBtn.style.display = PrasunaState.cart.length > 0 ? 'inline-block' : 'none';
+  }
+
   if (PrasunaState.cart.length === 0) {
     container.innerHTML = `
       <div class="empty-cart-view">
@@ -232,6 +237,18 @@ function renderCart() {
     } else {
       progressText.innerHTML = `Add <strong>${formatMoney(remainingForFreeShipping)}</strong> more for Free Worldwide Express Shipping!`;
     }
+  }
+}
+
+// Clear all items from cart
+function clearCart() {
+  if (!PrasunaState.cart || PrasunaState.cart.length === 0) return;
+  if (confirm("Remove all silhouettes from your shopping bag?")) {
+    PrasunaState.cart = [];
+    saveCart();
+    renderCart();
+    updateCartBadges();
+    showToast("Shopping bag cleared");
   }
 }
 

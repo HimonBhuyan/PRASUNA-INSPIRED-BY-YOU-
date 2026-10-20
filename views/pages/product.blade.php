@@ -183,7 +183,7 @@
               <option value="{{ $s }}" {{ $s === 'S' ? 'selected' : '' }}>Size: {{ $s }}</option>
             @endforeach
           </select>
-          <button type="button" class="btn btn-crimson btn-sm" onclick="addCurrentProductToBag()" style="white-space:nowrap;">
+          <button type="button" class="btn btn-crimson btn-sm sticky-atc-btn" onclick="addCurrentProductToBag()">
             + Add To Bag
           </button>
         </div>

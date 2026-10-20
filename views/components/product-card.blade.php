@@ -16,17 +16,17 @@
       @endif
     </div>
 
-    <a href="?page=product&id={{ $product['id'] }}">
+    <a href="?page=product&id={{ $product['id'] }}" class="product-media-link" onclick="if(window.innerWidth <= 768) { event.preventDefault(); openQuickView({!! json_encode($product, JSON_HEX_APOS | JSON_HEX_QUOT) !!}); }">
       <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="primary-img" loading="lazy">
       <img src="{{ $product['hover_image'] ?? $product['image'] }}" alt="{{ $product['name'] }}" class="hover-img" loading="lazy">
     </a>
 
     <!-- Overlay Actions -->
     <div class="product-overlay-actions">
-      <button type="button" class="overlay-btn" onclick='openQuickView({!! json_encode($product, JSON_HEX_APOS | JSON_HEX_QUOT) !!})'>
+      <button type="button" class="overlay-btn overlay-btn-qv" onclick='openQuickView({!! json_encode($product, JSON_HEX_APOS | JSON_HEX_QUOT) !!})'>
         Quick View
       </button>
-      <button type="button" class="overlay-btn overlay-btn-dark" onclick='addToCart({
+      <button type="button" class="overlay-btn overlay-btn-dark overlay-btn-add" onclick='addToCart({
         id: "{{ $product['id'] }}",
         name: "{{ addslashes($product['name']) }}",
         color: "{{ addslashes($product['colors'][0]['name'] ?? 'Default') }}",

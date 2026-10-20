@@ -2314,6 +2314,26 @@ h1, h2, h3, h4, .font-serif {
   gap: 10px;
 }
 
+.cart-clear-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: var(--transition);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.cart-clear-btn:hover {
+  background: var(--color-crimson-soft);
+  color: var(--color-crimson);
+  border-color: var(--color-crimson);
+}
+
 .drawer-close {
   width: 32px;
   height: 32px;
@@ -2333,17 +2353,21 @@ h1, h2, h3, h4, .font-serif {
 /* Free Shipping Bar */
 .shipping-bar-wrap {
   background-color: var(--color-surface-subtle);
-  padding: 12px 24px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--color-border);
   font-size: 0.78rem;
 }
 
 .shipping-bar-text {
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-bottom: 8px;
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.45;
   font-weight: 500;
+  color: var(--color-charcoal);
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .progress-track {
@@ -3538,6 +3562,38 @@ h1, h2, h3, h4, .font-serif {
     gap: 4px;
   }
 
+  /* Mobile Product Card Overlay: Show ONLY Quick View, completely hide + Quick Add / Add to Cart */
+  .product-overlay-actions {
+    left: 8px;
+    right: 8px;
+    bottom: 10px;
+    gap: 0;
+    justify-content: center;
+  }
+
+  .product-overlay-actions .overlay-btn-add,
+  .product-overlay-actions .overlay-btn-dark {
+    display: none !important;
+  }
+
+  .product-overlay-actions .overlay-btn,
+  .product-overlay-actions .overlay-btn-qv {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 125px;
+    margin: 0 auto;
+    padding: 8px 14px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--color-charcoal);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
   .color-swatches {
     gap: 3px;
   }
@@ -3687,15 +3743,63 @@ h1, h2, h3, h4, .font-serif {
     order: 1;
   }
 
-  /* Sticky ATC Bar */
+  /* Sticky ATC Bar Mobile Responsiveness */
+  .sticky-quick-bar {
+    padding: 8px 0;
+  }
+
+  .sticky-bar-inner {
+    gap: 8px;
+    padding: 0 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sticky-product-meta {
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .sticky-thumb {
+    width: 36px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
   .sticky-title {
-    max-width: 120px;
+    max-width: 110px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+  }
+
+  .sticky-price {
     font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .sticky-actions-group {
+    gap: 6px;
+    flex-shrink: 0;
+    align-items: center;
   }
 
   .sticky-size-select {
     padding: 6px 8px;
-    font-size: 0.74rem;
+    font-size: 0.72rem;
+    max-width: 76px;
+  }
+
+  .sticky-atc-btn {
+    padding: 8px 12px !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    flex-shrink: 0;
   }
 
   /* Atelier Page Mobile */
@@ -3813,11 +3917,36 @@ h1, h2, h3, h4, .font-serif {
   }
 
   .sticky-product-meta {
-    gap: 8px;
+    gap: 6px;
+    min-width: 0;
   }
 
   .sticky-thumb {
     display: none;
+  }
+
+  .sticky-title {
+    max-width: 85px;
+    font-size: 0.72rem;
+  }
+
+  .sticky-price {
+    font-size: 0.76rem;
+  }
+
+  .sticky-actions-group {
+    gap: 4px;
+  }
+
+  .sticky-size-select {
+    max-width: 68px;
+    padding: 5px 6px;
+    font-size: 0.7rem;
+  }
+
+  .sticky-atc-btn {
+    padding: 7px 10px !important;
+    font-size: 0.72rem !important;
   }
 }
 
