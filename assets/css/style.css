@@ -609,8 +609,8 @@ h1, h2, h3, h4, .font-serif {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 44px;
   align-items: center;
 }
 
@@ -822,10 +822,10 @@ h1, h2, h3, h4, .font-serif {
 .hero-image-wrap {
   position: relative;
   border-radius: var(--radius-lg);
-  overflow: visible;
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
   aspect-ratio: 3/4;
-  max-height: min(580px, calc(100vh - 160px));
+  width: 100%;
 }
 
 .hero-image-wrap > img,
