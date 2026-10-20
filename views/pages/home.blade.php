@@ -110,6 +110,22 @@
           
           <img id="hero-slide-img" src="assets/images/hero_festive.jpg" alt="Prasuna Limited Silhouette" style="width:100%; height:100%; object-fit:cover; transition:opacity 0.28s ease;">
           
+          <!-- Live Video Replaces Image on Hover -->
+          <video id="hero-hover-video" 
+                 class="hero-hover-video" 
+                 muted 
+                 loop 
+                 playsinline 
+                 preload="auto" 
+                 src="assets/videos/hero_runway_walk.mp4">
+          </video>
+
+          <!-- Live Motion Pill Indicator -->
+          <div class="hero-motion-indicator" id="hero-motion-pill" onclick="toggleHeroVideoMotion(event)" title="Hover or tap to view silhouette in motion">
+            <span class="motion-icon" id="motion-icon">▶</span>
+            <span class="motion-text" id="motion-text">Hover for Live Motion</span>
+          </div>
+          
           <!-- Hotspot Pin 1: Bodice / Camisole -->
           <div class="hotspot-pin" id="hero-pin-top" style="top: 38%; left: 48%;" onclick="toggleHotspotPin(this, event)" title="Click to inspect silhouette top">
             <span style="font-size:0.75rem; color:var(--color-crimson); font-weight:700;">+</span>

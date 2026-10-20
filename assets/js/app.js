@@ -737,6 +737,7 @@ const HERO_LOOKS = [
   {
     badge: 'Look 01 • Iconic Fit',
     image: 'assets/images/hero_festive.jpg',
+    video: 'assets/videos/hero_runway_walk.mp4',
     title: 'Gulabi Front-Slit Set',
     meta: 'Olive Gold Raw Silk • Pure Zardozi',
     productId: 'gulabi-set',
@@ -763,6 +764,7 @@ const HERO_LOOKS = [
   {
     badge: 'Look 02 • Mul Cotton Special',
     image: 'assets/images/suhani_lilac.jpg',
+    video: 'assets/videos/hero_sunflower_walk.mp4',
     title: 'Suhani Applique & Bell-Sleeve Set',
     meta: 'Pure Mul Cotton • Corset Lace-Up Back',
     productId: 'suhani-corset-set',
@@ -789,6 +791,7 @@ const HERO_LOOKS = [
   {
     badge: 'Look 03 • Dashain Heirloom',
     image: 'assets/images/saya_mul_cotton.jpg',
+    video: 'assets/videos/hero_runway_walk.mp4',
     title: 'Saya Corset & Tiered Sharara',
     meta: 'Pintuck Mul Cotton • Billowing Tiered Sharara',
     productId: 'saya-mul-cotton',
@@ -826,9 +829,35 @@ function initHeroCarousel() {
 
   startHeroProgress();
 
-  // Pause on mouse hover or touch hold
-  showcase.addEventListener('mouseenter', pauseHeroProgress);
-  showcase.addEventListener('mouseleave', resumeHeroProgress);
+  const hoverVideo = document.getElementById('hero-hover-video');
+  const motionIcon = document.getElementById('motion-icon');
+  const motionText = document.getElementById('motion-text');
+
+  // Replace still photo with live video on hover
+  showcase.addEventListener('mouseenter', () => {
+    pauseHeroProgress();
+    showcase.classList.add('playing-video');
+    if (hoverVideo) {
+      hoverVideo.currentTime = 0;
+      const playPromise = hoverVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+    if (motionIcon) motionIcon.textContent = '●';
+    if (motionText) motionText.textContent = 'Live Motion • Kathmandu Runway';
+  });
+
+  // Restore still photo on mouse leave
+  showcase.addEventListener('mouseleave', () => {
+    resumeHeroProgress();
+    showcase.classList.remove('playing-video');
+    if (hoverVideo) {
+      hoverVideo.pause();
+    }
+    if (motionIcon) motionIcon.textContent = '▶';
+    if (motionText) motionText.textContent = 'Hover for Live Motion';
+  });
 }
 
 function startHeroProgress() {
@@ -895,6 +924,18 @@ function switchHeroLook(index, btn = null) {
       img.src = look.image;
       img.style.opacity = '1';
     }, 180);
+  }
+
+  // Update Hero Hover Video
+  const hoverVideo = document.getElementById('hero-hover-video');
+  const showcase = document.getElementById('hero-showcase-wrap');
+  if (hoverVideo && look.video) {
+    const isPlaying = showcase && showcase.classList.contains('playing-video');
+    hoverVideo.src = look.video;
+    hoverVideo.load();
+    if (isPlaying) {
+      hoverVideo.play().catch(() => {});
+    }
   }
 
   // Update Floating Card & Badge
@@ -1014,6 +1055,32 @@ function toggleFabricDetails(event) {
   }
 }
 
+// Toggle Hero Video Motion (for touch devices or direct clicks on badge)
+function toggleHeroVideoMotion(event) {
+  if (event) event.stopPropagation();
+  const showcase = document.getElementById('hero-showcase-wrap');
+  const hoverVideo = document.getElementById('hero-hover-video');
+  const motionIcon = document.getElementById('motion-icon');
+  const motionText = document.getElementById('motion-text');
+  if (!showcase || !hoverVideo) return;
+
+  const isPlaying = showcase.classList.contains('playing-video');
+  if (isPlaying) {
+    hoverVideo.pause();
+    showcase.classList.remove('playing-video');
+    if (motionIcon) motionIcon.textContent = '▶';
+    if (motionText) motionText.textContent = 'Hover for Live Motion';
+    resumeHeroProgress();
+  } else {
+    pauseHeroProgress();
+    hoverVideo.currentTime = 0;
+    hoverVideo.play().catch(() => {});
+    showcase.classList.add('playing-video');
+    if (motionIcon) motionIcon.textContent = '●';
+    if (motionText) motionText.textContent = 'Live Motion • Kathmandu Runway';
+  }
+}
+
 // Global click closes fabric modal and hotspots
 document.addEventListener('click', () => {
   const fabricModal = document.getElementById('fabric-detail-modal');
@@ -1027,6 +1094,11 @@ function openAtelierFilmModal() {
   if (modal) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    const video = document.getElementById('atelier-modal-video');
+    if (video) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
   }
 }
 
@@ -1035,5 +1107,9 @@ function closeAtelierFilmModal() {
   if (modal) {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    const video = document.getElementById('atelier-modal-video');
+    if (video) {
+      video.pause();
+    }
   }
 }
