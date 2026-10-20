@@ -858,34 +858,14 @@ function initHeroCarousel() {
 
   startHeroProgress();
 
-  const hoverVideo = document.getElementById('hero-hover-video');
-  const motionIcon = document.getElementById('motion-icon');
-  const motionText = document.getElementById('motion-text');
-
-  // Replace still photo with live video on hover
+  // Pause carousel progress on hover
   showcase.addEventListener('mouseenter', () => {
     pauseHeroProgress();
-    showcase.classList.add('playing-video');
-    if (hoverVideo) {
-      hoverVideo.currentTime = 0;
-      const playPromise = hoverVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
-      }
-    }
-    if (motionIcon) motionIcon.textContent = '●';
-    if (motionText) motionText.textContent = 'Live Motion • Kathmandu Runway';
   });
 
-  // Restore still photo on mouse leave
+  // Resume carousel progress on mouse leave
   showcase.addEventListener('mouseleave', () => {
     resumeHeroProgress();
-    showcase.classList.remove('playing-video');
-    if (hoverVideo) {
-      hoverVideo.pause();
-    }
-    if (motionIcon) motionIcon.textContent = '▶';
-    if (motionText) motionText.textContent = 'Hover for Live Motion';
   });
 }
 
@@ -953,18 +933,6 @@ function switchHeroLook(index, btn = null) {
       img.src = look.image;
       img.style.opacity = '1';
     }, 180);
-  }
-
-  // Update Hero Hover Video
-  const hoverVideo = document.getElementById('hero-hover-video');
-  const showcase = document.getElementById('hero-showcase-wrap');
-  if (hoverVideo && look.video) {
-    const isPlaying = showcase && showcase.classList.contains('playing-video');
-    hoverVideo.src = look.video;
-    hoverVideo.load();
-    if (isPlaying) {
-      hoverVideo.play().catch(() => {});
-    }
   }
 
   // Update Floating Card & Badge
@@ -1081,32 +1049,6 @@ function toggleFabricDetails(event) {
   const modal = document.getElementById('fabric-detail-modal');
   if (modal) {
     modal.classList.toggle('show');
-  }
-}
-
-// Toggle Hero Video Motion (for touch devices or direct clicks on badge)
-function toggleHeroVideoMotion(event) {
-  if (event) event.stopPropagation();
-  const showcase = document.getElementById('hero-showcase-wrap');
-  const hoverVideo = document.getElementById('hero-hover-video');
-  const motionIcon = document.getElementById('motion-icon');
-  const motionText = document.getElementById('motion-text');
-  if (!showcase || !hoverVideo) return;
-
-  const isPlaying = showcase.classList.contains('playing-video');
-  if (isPlaying) {
-    hoverVideo.pause();
-    showcase.classList.remove('playing-video');
-    if (motionIcon) motionIcon.textContent = '▶';
-    if (motionText) motionText.textContent = 'Hover for Live Motion';
-    resumeHeroProgress();
-  } else {
-    pauseHeroProgress();
-    hoverVideo.currentTime = 0;
-    hoverVideo.play().catch(() => {});
-    showcase.classList.add('playing-video');
-    if (motionIcon) motionIcon.textContent = '●';
-    if (motionText) motionText.textContent = 'Live Motion • Kathmandu Runway';
   }
 }
 
