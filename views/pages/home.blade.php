@@ -727,7 +727,7 @@
 
       <form class="newsletter-form" onsubmit="submitVipForm(event)">
         <input type="email" class="newsletter-input" placeholder="Enter your email or WhatsApp number" required>
-        <button type="submit" class="btn btn-crimson btn-sm" style="white-space:nowrap;">
+        <button type="submit" class="btn btn-crimson btn-sm">
           Join Drop VIP List
         </button>
       </form>

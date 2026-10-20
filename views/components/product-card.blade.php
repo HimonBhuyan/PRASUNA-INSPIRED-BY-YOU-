@@ -4,15 +4,17 @@
 
 <article class="product-card" data-category="{{ $product['category'] }}" data-id="{{ $product['id'] }}">
   <div class="product-media">
-    @if(!empty($product['remaining_stock']) && $product['remaining_stock'] <= 5)
-      <span class="badge-stock">Only {{ $product['remaining_stock'] }} Left</span>
-    @elseif(!empty($product['badge']))
-      <span class="badge-stock">{{ $product['badge'] }}</span>
-    @endif
+    <div class="product-badges-stack">
+      @if(!empty($product['remaining_stock']) && $product['remaining_stock'] <= 5)
+        <span class="badge-stock">Only {{ $product['remaining_stock'] }} Left</span>
+      @elseif(!empty($product['badge']))
+        <span class="badge-stock">{{ $product['badge'] }}</span>
+      @endif
 
-    @if(!empty($product['tag']))
-      <span class="badge-tag">{{ $product['tag'] }}</span>
-    @endif
+      @if(!empty($product['tag']))
+        <span class="badge-tag">{{ $product['tag'] }}</span>
+      @endif
+    </div>
 
     <a href="?page=product&id={{ $product['id'] }}">
       <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="primary-img" loading="lazy">

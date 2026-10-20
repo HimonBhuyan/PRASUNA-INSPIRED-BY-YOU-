@@ -135,8 +135,8 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-crimson" id="checkout-submit-btn" style="width:100%; padding:18px; font-size:1rem;">
-          Place Order & Reserve Limited Drop
+        <button type="submit" class="btn btn-crimson checkout-submit-btn" id="checkout-submit-btn">
+          Place Order & Reserve Drop
         </button>
 
       </form>
@@ -241,13 +241,13 @@
       subtotalNpr += item.price_npr * item.qty;
       count += item.qty;
       html += `
-        <div style="display:flex; gap:12px; align-items:center;">
-          <img src="${item.image}" alt="${item.name}" style="width:54px; height:68px; object-fit:cover; border-radius:var(--radius-sm); flex-shrink:0;">
-          <div style="flex:1; min-width:0;">
-            <div style="font-weight:600; font-size:0.86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
-            <div style="font-size:0.75rem; color:var(--color-muted);">${item.color} • Size ${item.size} × ${item.qty}</div>
+        <div style="display:flex; gap:10px; align-items:center; width:100%; min-width:0;">
+          <img src="${item.image}" alt="${item.name}" style="width:46px; height:58px; object-fit:cover; border-radius:var(--radius-sm); flex-shrink:0;">
+          <div style="flex:1; min-width:0; overflow:hidden;">
+            <div style="font-weight:600; font-size:0.82rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
+            <div style="font-size:0.72rem; color:var(--color-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.color} • Size ${item.size} × ${item.qty}</div>
           </div>
-          <div style="font-weight:700; font-size:0.86rem; flex-shrink:0;">
+          <div style="font-weight:700; font-size:0.84rem; flex-shrink:0; white-space:nowrap; margin-left:6px;">
             ${formatMoney(item.price_npr * item.qty)}
           </div>
         </div>
