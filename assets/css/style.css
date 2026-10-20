@@ -139,7 +139,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -148,7 +148,7 @@ body {
   color: var(--color-body);
   line-height: 1.6;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -412,14 +412,21 @@ h1, h2, h3, h4, .font-serif {
    Header & Navigation
    ========================================================================== */
 .site-header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 90;
-  background-color: rgba(250, 248, 245, 0.94);
+  z-index: 100;
+  width: 100%;
+  background-color: rgba(250, 248, 245, 0.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
-  transition: var(--transition);
+  transition: all 0.25s ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 4px 20px rgba(25, 23, 22, 0.08);
+  background-color: rgba(250, 248, 245, 0.98);
 }
 
 .header-inner {
@@ -3283,9 +3290,9 @@ h1, h2, h3, h4, .font-serif {
 }
 
 @media (max-width: 768px) {
-  /* Prevent horizontal blowout */
+  /* Prevent horizontal blowout without breaking sticky elements */
   html, body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100%;
     position: relative;
   }
@@ -3302,6 +3309,11 @@ h1, h2, h3, h4, .font-serif {
   }
 
   .site-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
     padding: 0;
   }
 
