@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ $title ?? 'Prasuna • Handmade Himalayan Slow Fashion & Limited Drops' }}</title>
-  <meta name="description" content="Nepali artisanal fashion brand crafted with slow luxury principles. Exclusive limited drops, no repeat prints, and bespoke Indo-western silhouettes handcrafted in Kathmandu.">
+  <base href="{{ \App\Helpers::basePath() }}">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
 </head>

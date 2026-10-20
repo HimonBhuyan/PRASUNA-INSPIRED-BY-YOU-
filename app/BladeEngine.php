@@ -18,8 +18,12 @@ class BladeEngine
 
     public function __construct(string $viewsPath, string $cachePath)
     {
-        if (!is_dir($cachePath)) {
-            mkdir($cachePath, 0777, true);
+        $isVercel = getenv('VERCEL') || isset($_ENV['VERCEL']);
+        if ($isVercel || (!is_dir($cachePath) && !@mkdir($cachePath, 0777, true)) || !is_writable($cachePath)) {
+            $cachePath = sys_get_temp_dir() . '/prasuna_cache';
+            if (!is_dir($cachePath)) {
+                @mkdir($cachePath, 0777, true);
+            }
         }
 
         $container = new Container();

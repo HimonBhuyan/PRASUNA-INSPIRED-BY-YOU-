@@ -37,6 +37,16 @@ class Helpers
 
     public static function asset(string $path): string
     {
-        return ltrim($path, '/');
+        return self::basePath() . ltrim($path, '/');
+    }
+
+    public static function basePath(): string
+    {
+        $script = $_SERVER['SCRIPT_NAME'] ?? '';
+        $dir = str_replace('\\', '/', dirname($script));
+        if ($dir === '/' || $dir === '/api' || $dir === '.' || $dir === '') {
+            return '/';
+        }
+        return rtrim($dir, '/') . '/';
     }
 }
