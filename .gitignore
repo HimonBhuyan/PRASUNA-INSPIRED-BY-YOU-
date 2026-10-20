@@ -1,0 +1,14 @@
+# Composer dependencies
+/vendor/
+
+# Blade compiled cache
+/cache/*
+!/cache/.gitkeep
+
+# Environment & logs
+*.log
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

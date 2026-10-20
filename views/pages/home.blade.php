@@ -1,0 +1,437 @@
+@extends('layouts.app')
+
+@section('content')
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container-wide">
+    <div class="hero-grid">
+      
+      <!-- Left Editorial Text -->
+      <div class="hero-content">
+        <div class="hero-subhead">
+          <span class="pulse-dot"></span>
+          Drop 08 Live • Festive Edition
+        </div>
+        
+        <h1 class="hero-title">
+          Handmade Silhouettes, <em>Crafted for You</em>.
+        </h1>
+        
+        <p class="hero-description">
+          Slow fashion heirlooms handcrafted in Kathmandu. Lustrous raw silks, delicate zardozi embroidery, and modern Indo-western cuts. Each piece is strictly limited — <strong>no repeat prints, ever.</strong>
+        </p>
+
+        <!-- Live Drop Countdown -->
+        <div class="drop-countdown-box">
+          <div class="countdown-label">
+            <span><span>🌸</span> Drop 08 Archive Closes In</span>
+            <span style="font-size:0.7rem; color:var(--color-muted);">Limited Inventory</span>
+          </div>
+          <div class="countdown-timer">
+            <div class="timer-unit">
+              <div class="timer-number" id="timer-days">02</div>
+              <div class="timer-text">Days</div>
+            </div>
+            <div class="timer-divider">:</div>
+            <div class="timer-unit">
+              <div class="timer-number" id="timer-hours">14</div>
+              <div class="timer-text">Hours</div>
+            </div>
+            <div class="timer-divider">:</div>
+            <div class="timer-unit">
+              <div class="timer-number" id="timer-minutes">35</div>
+              <div class="timer-text">Mins</div>
+            </div>
+            <div class="timer-divider">:</div>
+            <div class="timer-unit">
+              <div class="timer-number" id="timer-seconds">12</div>
+              <div class="timer-text">Secs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Actions -->
+        <div class="btn-group">
+          <a href="?page=shop" class="btn btn-primary">
+            Shop Drop 08 (Festive)
+          </a>
+          <a href="?page=atelier" class="btn btn-secondary">
+            Our Story & Atelier
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Editorial Hero Visual -->
+      <div class="hero-media">
+        <div class="hero-image-wrap">
+          <span class="floating-badge">Drop 08 Iconic Fit</span>
+          <img src="assets/images/hero_festive.jpg" alt="Gulabi Embroidered Front-Slit Set in Olive Gold">
+          
+          <div class="hero-floating-card">
+            <div>
+              <div class="floating-product-title">Gulabi Front-Slit Set</div>
+              <div class="floating-product-meta">Olive Gold Raw Silk • Pure Zardozi</div>
+            </div>
+            <button type="button" class="btn btn-crimson btn-sm" onclick='addToCart({
+              id: "gulabi-set",
+              name: "Gulabi Embroidered Front-Slit Set",
+              color: "Olive Antique Gold",
+              size: "S",
+              price_npr: 14500,
+              image: "assets/images/hero_festive.jpg",
+              qty: 1
+            })'>
+              + Quick Bag
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Instagram Stories Highlight Bubbles -->
+<section class="stories-section" aria-label="Brand Stories">
+  <div class="container-wide">
+    <div style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--color-muted); margin-bottom:12px;">
+      ✦ Highlights from our Studio & Archives
+    </div>
+    <div class="stories-row">
+      
+      <button class="story-bubble" onclick="openStoryModal('suhani')">
+        <div class="story-ring">
+          <img src="assets/images/suhani_corset_back.jpg" alt="Suhani Set Corset Back" class="story-avatar">
+        </div>
+        <span class="story-name">✨ Suhani Set ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('saya')">
+        <div class="story-ring">
+          <img src="assets/images/saya_mul_cotton.jpg" alt="Saya Mul Cotton Sharara" class="story-avatar">
+        </div>
+        <span class="story-name">✨ Saya Mul Cotton ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('zoya')">
+        <div class="story-ring">
+          <img src="assets/images/zoya_handloom.jpg" alt="Zoya Handloom Set" class="story-avatar">
+        </div>
+        <span class="story-name">✨ Zoya Handloom ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('gulabi')">
+        <div class="story-ring">
+          <img src="assets/images/hero_festive.jpg" alt="Gulabi Set Story" class="story-avatar">
+        </div>
+        <span class="story-name">✨ GULABI ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('noor')">
+        <div class="story-ring">
+          <img src="assets/images/noor_fuchsia.jpg" alt="Noor Set Story" class="story-avatar">
+        </div>
+        <span class="story-name">✨ NOOR ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('pooh')">
+        <div class="story-ring">
+          <img src="assets/images/pooh_yellow.jpg" alt="Pooh Set Story" class="story-avatar">
+        </div>
+        <span class="story-name">✨ POOH SET ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('loves')">
+        <div class="story-ring">
+          <img src="assets/images/packaging_unboxing.jpg" alt="Packaging Story" class="story-avatar">
+        </div>
+        <span class="story-name">✨ LOVES (Care) ✨</span>
+      </button>
+
+      <button class="story-bubble" onclick="openStoryModal('atelier')">
+        <div class="story-ring">
+          <img src="assets/images/atelier_crafting.jpg" alt="Atelier Story" class="story-avatar">
+        </div>
+        <span class="story-name">✨ Store Unfiltered ✨</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- Value Props / Brand Commitments -->
+<section class="value-props-section">
+  <div class="container-wide">
+    <div class="value-props-grid">
+      
+      <div class="value-prop-card">
+        <div class="value-prop-icon">🌸</div>
+        <div>
+          <div class="value-prop-title">No Repeat Prints</div>
+          <div class="value-prop-desc">Each drop is strictly limited. Once an archive print is gone, it is retired forever.</div>
+        </div>
+      </div>
+
+      <div class="value-prop-card">
+        <div class="value-prop-icon">🪡</div>
+        <div>
+          <div class="value-prop-title">Handmade in Kathmandu</div>
+          <div class="value-prop-desc">Crafted with fair living wages by master tailors in our local Nepal atelier.</div>
+        </div>
+      </div>
+
+      <div class="value-prop-card">
+        <div class="value-prop-icon">✨</div>
+        <div>
+          <div class="value-prop-title">Custom Sizing Available</div>
+          <div class="value-prop-desc">We tailor to your exact bust, waist, and height at no additional charge.</div>
+        </div>
+      </div>
+
+      <div class="value-prop-card">
+        <div class="value-prop-icon">✈️</div>
+        <div>
+          <div class="value-prop-title">Worldwide Express Shipping</div>
+          <div class="value-prop-desc">Fast, insured delivery to USA, Australia, UK, Canada, India, and worldwide.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Silhouettes & Current Drops Collection -->
+<section class="products-section" id="collection-grid">
+  <div class="container-wide">
+    
+    <div class="section-header">
+      <span class="section-tag">Current Release • Drop 08</span>
+      <h2 class="section-title">The Festive Edit & Heirlooms</h2>
+      <p class="section-desc">
+        Designed for celebrations that linger in memory. Modern silhouettes meeting ancient Himalayan textile traditions.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="category-tabs">
+      <button class="tab-btn active" onclick="filterCategory('All', this)">All Silhouettes</button>
+      <button class="tab-btn" onclick="filterCategory('Mul Cotton & Applique', this)">Mul Cotton & Applique</button>
+      <button class="tab-btn" onclick="filterCategory('Camisole Tunics', this)">Camisole Tunics</button>
+      <button class="tab-btn" onclick="filterCategory('Festive Sets', this)">Festive Sets</button>
+      <button class="tab-btn" onclick="filterCategory('Heirloom Sets', this)">Heirloom Sets</button>
+      <button class="tab-btn" onclick="filterCategory('Co-Ords', this)">Co-Ords & Handlooms</button>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid">
+      @foreach($products as $product)
+        @include('components.product-card', ['product' => $product, 'currency' => $currency])
+      @endforeach
+    </div>
+
+    <div style="text-align: center; margin-top: 54px;">
+      <a href="?page=shop" class="btn btn-secondary">
+        View All Silhouettes & Sizing &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- The Drops Runway / Calendar Section -->
+<section class="drops-section">
+  <div class="container-wide">
+    <div class="section-header">
+      <span class="section-tag">Limited Batch Model</span>
+      <h2 class="section-title">The Drop Schedule</h2>
+      <p class="section-desc">
+        We release clothing in micro-batches to respect our artisans' craft and eliminate textile waste.
+      </p>
+    </div>
+
+    <div class="drop-cards-grid">
+      @foreach($drops as $d)
+        <div class="drop-card">
+          <div class="drop-media">
+            <span class="drop-number-badge">DROP {{ $d['number'] }}</span>
+            <span class="drop-status-badge {{ $d['status'] === 'Live Now' ? 'status-live' : ($d['status'] === 'Limited Stock' ? 'status-limited' : 'status-waitlist') }}">
+              {{ $d['status'] }}
+            </span>
+            <img src="{{ $d['image'] }}" alt="{{ $d['title'] }}" loading="lazy">
+          </div>
+          <div class="drop-body">
+            <div class="drop-pieces">{{ $d['pieces'] }} • {{ $d['date'] }}</div>
+            <h3 class="drop-title">{{ $d['title'] }}</h3>
+            <div style="font-family:var(--font-nepali); color:var(--color-muted); font-size:0.86rem; margin-bottom:12px;">{{ $d['nepali_title'] }}</div>
+            <p class="drop-text">{{ $d['tagline'] }}</p>
+            @if($d['status'] === 'Live Now')
+              <a href="?page=shop" class="btn btn-crimson btn-sm">Shop Available Pieces</a>
+            @elseif($d['status'] === 'Limited Stock')
+              <a href="?page=shop" class="btn btn-secondary btn-sm">View Last Pieces</a>
+            @else
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('vip-newsletter-section').scrollIntoView({behavior:'smooth'})">
+                Join VIP Early Waitlist
+              </button>
+            @endif
+          </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<!-- The Atelier & Behind The Stitches -->
+<section class="atelier-section">
+  <div class="container-wide">
+    <div class="atelier-grid">
+      
+      <!-- Visual Collage -->
+      <div class="atelier-collage">
+        <div class="atelier-img-main">
+          <img src="assets/images/atelier_crafting.jpg" alt="Kathmandu Atelier Tailoring" loading="lazy">
+        </div>
+        <div class="atelier-side-stack">
+          <div class="atelier-img-sub">
+            <img src="assets/images/founder.jpg" alt="Founder Prasuna at Atelier" loading="lazy">
+          </div>
+          <div class="atelier-img-sub">
+            <img src="assets/images/packaging_unboxing.jpg" alt="Signature Keepsake Packaging" loading="lazy">
+          </div>
+        </div>
+
+        <div class="atelier-badge-floater">
+          <div class="atelier-badge-icon">🪡</div>
+          <div class="atelier-badge-text">
+            <strong>100% Nepali Crafted</strong>
+            <span>Kathmandu • Fair Living Wages</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text / Story Content -->
+      <div class="atelier-content">
+        <span class="section-tag">Slow Fashion Manifesto</span>
+        <h2 class="section-title">Behind Every Single Stitch</h2>
+        
+        <blockquote class="atelier-quote">
+          "Clothing shouldn't just be worn; it should hold meaning. In our atelier, every piece is touched by real hands who care about the finished seam as much as you do."
+        </blockquote>
+
+        <p style="font-size: 0.95rem; color: var(--color-muted); line-height: 1.7; margin-bottom: 20px;">
+          Founded in Kathmandu, Prasuna was created as a rebellion against throwaway fast fashion. We don't believe in endless warehouses or reprinted trends. When you purchase a Prasuna silhouette, you are supporting a slow, dignified craft ecosystem where master tailors and embroiderers are celebrated as artists.
+        </p>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <span class="feature-check">✓</span>
+            <span><strong>Zero Waste Philosophy:</strong> Every silk cutoff is repurposed into hair scrunchies and packaging ties.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-check">✓</span>
+            <span><strong>Bespoke Proportions:</strong> Standard sizes plus free custom length and bust alterations.</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-check">✓</span>
+            <span><strong>Keepsake Experience:</strong> Delivered in recyclable boxes with dried botanicals, wax seal, and handwritten note.</span>
+          </li>
+        </ul>
+
+        <a href="?page=atelier" class="btn btn-primary">
+          Explore The Atelier Story &rarr;
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Signature Keepsake Care Letter Section -->
+<section style="padding:64px 0; background:var(--color-bg); border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);">
+  <div class="container">
+    <div style="background:#EFE6DD; border:2px dashed #C8B9A6; border-radius:var(--radius-lg); padding:48px 40px; position:relative; box-shadow:var(--shadow-sm); max-width:860px; margin:0 auto;">
+      <div style="position:absolute; top:-16px; right:32px; background:var(--color-crimson); color:#fff; padding:4px 16px; border-radius:var(--radius-full); font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">
+        From Our Kathmandu Atelier 🌸
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:36px; align-items:center;">
+        <div>
+          <h3 class="font-serif" style="font-size:1.8rem; font-style:italic; margin-bottom:14px; color:var(--color-charcoal);">
+            "Hey love, Before you open this package..."
+          </h3>
+          <p style="font-size:0.95rem; color:var(--color-body); line-height:1.75; margin-bottom:16px;">
+            Your piece is made with soft fabrics and lots of love, so please treat it gently. Wash it separately, always hand wash in cold water, avoid machine washing, dry it in the shade, and iron on low heat to keep it looking beautiful for longer.
+          </p>
+          <div style="font-family:var(--font-nepali); font-size:1.25rem; color:var(--color-crimson); font-weight:600;">
+            With love,<br>
+            प्रसूना 🪡
+          </div>
+        </div>
+
+        <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-md);">
+          <img src="assets/images/packaging_unboxing.jpg" alt="Prasuna Packaging and Care Note" style="width:100%; height:auto; object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shoppable Instagram Grid (@prasuna.clo) -->
+<section class="instagram-section">
+  <div class="container-wide">
+    
+    <div class="instagram-header">
+      <div>
+        <span class="section-tag">Community & Looks</span>
+        <h2 class="section-title" style="margin-bottom:6px;">Worn By You on Instagram</h2>
+        <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" class="insta-handle">
+          <span>@prasuna.clo</span>
+          <span class="insta-pill">70.6K Community</span>
+        </a>
+      </div>
+      <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
+        Follow on Instagram ↗
+      </a>
+    </div>
+
+    <div class="instagram-grid">
+      @foreach($instagram_posts as $post)
+        <div class="insta-card" onclick='openStoryModal("{{ $loop->iteration % 2 === 0 ? "gulabi" : "noor" }}")'>
+          <img src="{{ $post['image'] }}" alt="Instagram look by @prasuna.clo" loading="lazy">
+          <div class="insta-overlay">
+            <div class="insta-stats">
+              <span>❤️ {{ $post['likes'] }}</span>
+              <span>💬 {{ $post['comments'] }}</span>
+            </div>
+            @if(!empty($post['product_name']))
+              <span class="insta-tag-pill">🛍️ {{ $post['product_name'] }}</span>
+            @endif
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+  </div>
+</section>
+
+<!-- VIP Waitlist / Drop Radar Banner -->
+<section class="newsletter-section" id="vip-newsletter-section">
+  <div class="container-wide">
+    <div class="newsletter-card">
+      <div style="font-size:1.8rem; margin-bottom:12px;">🌸</div>
+      <h2 class="newsletter-title font-serif">Get VIP Access to Drop 09</h2>
+      <p class="newsletter-desc">
+        Because our drops sell out quickly, VIP subscribers receive WhatsApp or email access 15 minutes before public drop launch. Strictly no spam.
+      </p>
+
+      <form class="newsletter-form" onsubmit="submitVipForm(event)">
+        <input type="email" class="newsletter-input" placeholder="Enter your email or WhatsApp number" required>
+        <button type="submit" class="btn btn-crimson btn-sm" style="white-space:nowrap;">
+          Join Drop VIP List
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+@endsection
