@@ -93,7 +93,7 @@
       </div>
 
       <!-- Action Buttons -->
-      <div style="display:flex; gap:16px; margin-top:12px;">
+      <div class="product-actions-group">
         <button type="button" class="btn btn-crimson" style="flex:2;" onclick="addCurrentProductToBag()">
           Add To Shopping Bag
         </button>
@@ -103,7 +103,7 @@
       </div>
 
       <!-- Trust Badges -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:16px 0; border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border); font-size:0.8rem; color:var(--color-muted);">
+      <div class="product-trust-badges">
         <div>🌸 <strong>No Repeat Prints</strong> — Strictly limited run</div>
         <div>🪡 <strong>Made in Kathmandu</strong> — Ethical artisan wages</div>
         <div>📦 <strong>Signature Keepsake Box</strong> — Wax seal & note</div>

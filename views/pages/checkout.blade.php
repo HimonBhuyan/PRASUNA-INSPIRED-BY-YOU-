@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container" style="padding-top: 36px; padding-bottom: 96px;">
+<div class="container checkout-container">
   
   <!-- Breadcrumbs -->
   <nav class="breadcrumb-nav">
@@ -13,54 +13,54 @@
 
   <div id="checkout-view-container">
     
-    <div style="margin-bottom: 32px;">
+    <div class="checkout-header-block">
       <span class="section-tag">Secure Himalayan Dispatch</span>
-      <h1 class="font-serif" style="font-size:2.4rem; margin-top:4px;">Express Checkout</h1>
+      <h1 class="checkout-main-title font-serif">Express Checkout</h1>
     </div>
 
-    <div style="display:grid; grid-template-columns: 1.25fr 1fr; gap:48px; align-items:flex-start;">
+    <div class="checkout-grid">
       
       <!-- Checkout Form Column -->
       <form id="order-checkout-form" onsubmit="processOrder(event)">
         
         <!-- Step 1: Customer Info -->
-        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:28px; margin-bottom:24px;">
-          <h2 class="font-serif" style="font-size:1.25rem; margin-bottom:18px; display:flex; align-items:center; gap:8px;">
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">
             <span>1. Contact & Recipient</span>
           </h2>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;">
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">First Name *</label>
-              <input type="text" required placeholder="e.g. Alisha" style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+          <div class="checkout-form-row">
+            <div class="checkout-form-group">
+              <label class="checkout-label">First Name *</label>
+              <input type="text" required placeholder="e.g. Alisha" class="checkout-input">
             </div>
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Last Name *</label>
-              <input type="text" required placeholder="e.g. Shrestha" style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+            <div class="checkout-form-group">
+              <label class="checkout-label">Last Name *</label>
+              <input type="text" required placeholder="e.g. Shrestha" class="checkout-input">
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Email Address *</label>
-              <input type="email" required placeholder="alisha@example.com" style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+          <div class="checkout-form-row">
+            <div class="checkout-form-group">
+              <label class="checkout-label">Email Address *</label>
+              <input type="email" required placeholder="alisha@example.com" class="checkout-input">
             </div>
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Phone / WhatsApp *</label>
-              <input type="tel" required placeholder="+977 98..." style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+            <div class="checkout-form-group">
+              <label class="checkout-label">Phone / WhatsApp *</label>
+              <input type="tel" required placeholder="+977 98..." class="checkout-input">
             </div>
           </div>
         </div>
 
         <!-- Step 2: Shipping Destination -->
-        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:28px; margin-bottom:24px;">
-          <h2 class="font-serif" style="font-size:1.25rem; margin-bottom:18px;">
+        <div class="checkout-card">
+          <h2 class="checkout-card-title">
             2. Delivery Destination
           </h2>
 
           <div style="margin-bottom:16px;">
-            <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Country / Region *</label>
-            <select id="checkout-country" onchange="updateShippingMethod(this.value)" style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+            <label class="checkout-label">Country / Region *</label>
+            <select id="checkout-country" onchange="updateShippingMethod(this.value)" class="checkout-select">
               <option value="NP">Nepal (Local Delivery)</option>
               <option value="US">United States (Worldwide Express)</option>
               <option value="AU">Australia (Worldwide Express)</option>
@@ -72,62 +72,62 @@
           </div>
 
           <div style="margin-bottom:16px;">
-            <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Street Address & Landmark *</label>
-            <input type="text" required placeholder="House / Apartment, Street, Ward No." style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+            <label class="checkout-label">Street Address & Landmark *</label>
+            <input type="text" required placeholder="House / Apartment, Street, Ward No." class="checkout-input">
           </div>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">City / Town *</label>
-              <input type="text" required placeholder="Kathmandu, Lalitpur, Pokhara, New York..." style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+          <div class="checkout-form-row">
+            <div class="checkout-form-group">
+              <label class="checkout-label">City / Town *</label>
+              <input type="text" required placeholder="Kathmandu, Lalitpur, Pokhara, New York..." class="checkout-input">
             </div>
-            <div>
-              <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Postal / Zip Code</label>
-              <input type="text" placeholder="e.g. 44600" style="width:100%; padding:11px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
+            <div class="checkout-form-group">
+              <label class="checkout-label">Postal / Zip Code</label>
+              <input type="text" placeholder="e.g. 44600" class="checkout-input">
             </div>
           </div>
         </div>
 
         <!-- Step 3: Payment Method -->
-        <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:28px; margin-bottom:28px;">
-          <h2 class="font-serif" style="font-size:1.25rem; margin-bottom:18px;">
+        <div class="checkout-card" style="margin-bottom:28px;">
+          <h2 class="checkout-card-title">
             3. Payment Method
           </h2>
 
-          <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="checkout-payment-methods">
             
-            <label style="display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-sm); cursor:pointer; background:var(--color-surface);">
+            <label class="checkout-payment-option">
               <input type="radio" name="payment_method" value="khalti" checked>
-              <div style="flex:1;">
-                <div style="font-weight:600; font-size:0.9rem;">Khalti Digital Wallet</div>
-                <div style="font-size:0.76rem; color:var(--color-muted);">Instant payment via Khalti app or e-Banking</div>
+              <div class="checkout-payment-info">
+                <div class="checkout-payment-title">Khalti Digital Wallet</div>
+                <div class="checkout-payment-desc">Instant payment via Khalti app or e-Banking</div>
               </div>
               <span class="payment-pill" style="background:#5D2E8E; color:#fff;">Khalti</span>
             </label>
 
-            <label style="display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-sm); cursor:pointer; background:var(--color-surface);">
+            <label class="checkout-payment-option">
               <input type="radio" name="payment_method" value="esewa">
-              <div style="flex:1;">
-                <div style="font-weight:600; font-size:0.9rem;">eSewa Mobile Wallet</div>
-                <div style="font-size:0.76rem; color:var(--color-muted);">Pay securely using your eSewa account</div>
+              <div class="checkout-payment-info">
+                <div class="checkout-payment-title">eSewa Mobile Wallet</div>
+                <div class="checkout-payment-desc">Pay securely using your eSewa account</div>
               </div>
               <span class="payment-pill" style="background:#60BB46; color:#fff;">eSewa</span>
             </label>
 
-            <label style="display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-sm); cursor:pointer; background:var(--color-surface);">
+            <label class="checkout-payment-option">
               <input type="radio" name="payment_method" value="card">
-              <div style="flex:1;">
-                <div style="font-weight:600; font-size:0.9rem;">Credit / Debit Card (Worldwide)</div>
-                <div style="font-size:0.76rem; color:var(--color-muted);">Visa, MasterCard, American Express, Apple Pay</div>
+              <div class="checkout-payment-info">
+                <div class="checkout-payment-title">Credit / Debit Card (Worldwide)</div>
+                <div class="checkout-payment-desc">Visa, MasterCard, American Express, Apple Pay</div>
               </div>
               <span class="payment-pill" style="background:#1A1F71; color:#fff;">Visa / MC</span>
             </label>
 
-            <label style="display:flex; align-items:center; gap:14px; padding:14px 18px; border:1px solid var(--color-border); border-radius:var(--radius-sm); cursor:pointer; background:var(--color-surface);">
+            <label class="checkout-payment-option">
               <input type="radio" name="payment_method" value="cod">
-              <div style="flex:1;">
-                <div style="font-weight:600; font-size:0.9rem;">Cash on Delivery (Kathmandu Valley)</div>
-                <div style="font-size:0.76rem; color:var(--color-muted);">Pay with cash or QR scan upon receiving parcel</div>
+              <div class="checkout-payment-info">
+                <div class="checkout-payment-title">Cash on Delivery (Kathmandu Valley)</div>
+                <div class="checkout-payment-desc">Pay with cash or QR scan upon receiving parcel</div>
               </div>
               <span class="payment-pill" style="background:var(--color-charcoal); color:#fff;">COD</span>
             </label>
@@ -142,47 +142,47 @@
       </form>
 
       <!-- Right Column: Order Summary -->
-      <div style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:28px; position:sticky; top:100px;">
-        <h2 class="font-serif" style="font-size:1.25rem; margin-bottom:20px; border-bottom:1px solid var(--color-border); padding-bottom:12px;">
+      <div class="checkout-summary-card">
+        <h2 class="checkout-summary-title">
           Order Summary (<span id="checkout-item-count">0</span> items)
         </h2>
 
         <!-- Items preview -->
-        <div id="checkout-items-list" style="display:flex; flex-direction:column; gap:16px; margin-bottom:24px; max-height:300px; overflow-y:auto;">
+        <div id="checkout-items-list" class="checkout-items-list">
           <!-- Injected via JavaScript -->
         </div>
 
         <!-- Voucher Code Input -->
-        <div style="display:flex; gap:8px; margin-bottom:20px;">
-          <input type="text" id="promo-code-input" placeholder="Promo code (try PRASUNA10)" style="flex:1; padding:9px 12px; border:1px solid var(--color-border); border-radius:var(--radius-sm); font-size:0.84rem; text-transform:uppercase;">
+        <div class="checkout-promo-row">
+          <input type="text" id="promo-code-input" placeholder="Promo code (try PRASUNA10)" class="checkout-promo-input">
           <button type="button" class="btn btn-secondary btn-sm" onclick="applyPromoCode()">Apply</button>
         </div>
 
         <!-- Calculations -->
-        <div style="display:flex; flex-direction:column; gap:10px; font-size:0.88rem; border-top:1px solid var(--color-border); padding-top:16px;">
-          <div style="display:flex; justify-content:space-between;">
+        <div class="checkout-calc-block">
+          <div class="checkout-calc-row">
             <span style="color:var(--color-muted);">Subtotal</span>
             <span id="co-subtotal" style="font-weight:600;">Rs. 0</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between;" id="co-discount-row">
+          <div class="checkout-calc-row" id="co-discount-row">
             <span style="color:var(--color-emerald); font-weight:600;">Drop Promo (10% Off)</span>
             <span id="co-discount" style="color:var(--color-emerald); font-weight:600;">-Rs. 0</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between;">
+          <div class="checkout-calc-row">
             <span style="color:var(--color-muted);">Shipping</span>
             <span id="co-shipping" style="font-weight:600; color:var(--color-emerald);">FREE (Worldwide)</span>
           </div>
 
-          <div style="display:flex; justify-content:space-between; font-size:1.2rem; font-weight:700; color:var(--color-charcoal); border-top:1px solid var(--color-border); padding-top:14px; margin-top:6px;">
+          <div class="checkout-total-row">
             <span>Total Payable</span>
             <span id="co-total">Rs. 0</span>
           </div>
         </div>
 
         <!-- Packaging reassurance -->
-        <div style="margin-top:24px; padding:16px; background:var(--color-surface-subtle); border-radius:var(--radius-sm); font-size:0.78rem; color:var(--color-muted); line-height:1.5;">
+        <div class="checkout-keepsake-badge">
           💌 <strong>Complimentary Keepsake Gift Box:</strong> Sealed with dried botanical sprigs, brass wax stamp, and a handwritten card.
         </div>
       </div>
@@ -192,7 +192,7 @@
   </div>
 
   <!-- Order Success Screen (Hidden by default) -->
-  <div id="order-success-screen" style="display:none; text-align:center; max-width:640px; margin:40px auto; background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:56px 40px; box-shadow:var(--shadow-md);">
+  <div id="order-success-screen" class="checkout-success-card" style="display:none;">
     <div style="font-size:3.5rem; margin-bottom:16px;">🌸</div>
     <span class="section-tag">Order Confirmed • Dhanyabad!</span>
     <h2 class="font-serif" style="font-size:2.2rem; margin:10px 0 16px;">Thank You For Choosing Prasuna</h2>
@@ -242,12 +242,12 @@
       count += item.qty;
       html += `
         <div style="display:flex; gap:12px; align-items:center;">
-          <img src="${item.image}" alt="${item.name}" style="width:54px; height:68px; object-fit:cover; border-radius:var(--radius-sm);">
-          <div style="flex:1;">
-            <div style="font-weight:600; font-size:0.86rem;">${item.name}</div>
+          <img src="${item.image}" alt="${item.name}" style="width:54px; height:68px; object-fit:cover; border-radius:var(--radius-sm); flex-shrink:0;">
+          <div style="flex:1; min-width:0;">
+            <div style="font-weight:600; font-size:0.86rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</div>
             <div style="font-size:0.75rem; color:var(--color-muted);">${item.color} • Size ${item.size} × ${item.qty}</div>
           </div>
-          <div style="font-weight:700; font-size:0.86rem;">
+          <div style="font-weight:700; font-size:0.86rem; flex-shrink:0;">
             ${formatMoney(item.price_npr * item.qty)}
           </div>
         </div>

@@ -538,6 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     // Esc closes drawers & modals
     if (e.key === 'Escape') {
+      closeMobileNav();
       closeSearchDrawer();
       closeCartDrawer();
       closeQuickView();
@@ -558,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bd.addEventListener('click', (e) => {
       if (e.target === bd) {
         bd.classList.remove('active');
-        document.querySelectorAll('.modal-card, .search-drawer, .cart-drawer').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.modal-card, .search-drawer, .cart-drawer, .mobile-nav-drawer').forEach(el => el.classList.remove('active'));
         document.body.style.overflow = '';
       }
     });
@@ -722,7 +723,7 @@ function renderSearchCatalog(items, statusText) {
     const card = document.createElement('a');
     card.href = `?page=product&id=${encodeURIComponent(prod.id)}`;
     card.className = 'search-result-card';
-    card.onclick = () => closeSearchDrawer();
+    card.onclick = () => { closeMobileNav(); closeSearchDrawer(); };
 
     card.innerHTML = `
       <div class="search-thumb">
@@ -1122,5 +1123,28 @@ function closeAtelierFilmModal() {
     if (video) {
       video.pause();
     }
+  }
+}
+
+
+/* Mobile Navigation Drawer Handlers */
+function toggleMobileNav() {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  if (drawer && backdrop) {
+    const willOpen = !drawer.classList.contains('active');
+    drawer.classList.toggle('active', willOpen);
+    backdrop.classList.toggle('active', willOpen);
+    document.body.style.overflow = willOpen ? 'hidden' : '';
+  }
+}
+
+function closeMobileNav() {
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  if (drawer && backdrop) {
+    drawer.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }

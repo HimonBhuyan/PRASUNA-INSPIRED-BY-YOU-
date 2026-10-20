@@ -150,26 +150,26 @@
 
   <!-- Mobile Drawer Navigation -->
   <div class="drawer-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileNav()"></div>
-  <aside class="cart-drawer" id="mobile-nav-drawer" style="left:0; right:auto; transform:translateX(-100%);" aria-label="Mobile Navigation">
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation">
     <div class="drawer-header">
-      <div class="brand-title" style="font-size:1.4rem;">PRASUNA</div>
-      <button class="drawer-close" onclick="toggleMobileNav()">✕</button>
+      <div class="brand-title" style="font-size:1.35rem; letter-spacing:0.1em;">PRASUNA</div>
+      <button class="drawer-close" onclick="toggleMobileNav()" aria-label="Close Navigation">✕</button>
     </div>
-    <div style="padding: 20px 24px; display:flex; flex-direction:column; gap:16px; overflow-y:auto;">
-      <button onclick="toggleMobileNav(); openSearchDrawer();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left; color:var(--color-gold-hover);">
-        <span>🔍</span> Search Silhouettes
+    <div class="mobile-nav-body">
+      <button class="mobile-nav-action-btn" onclick="toggleMobileNav(); openSearchDrawer();">
+        <span>🔍</span> <span>Search Silhouettes</span>
       </button>
-      <button onclick="toggleCandlelightTheme();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left;">
+      <button class="mobile-nav-action-btn" onclick="toggleCandlelightTheme();">
         <span id="mobile-theme-icon">🕯️</span> <span id="mobile-theme-label">Candlelight View</span>
       </button>
-      <button onclick="toggleMobileNav(); openSizeGuideModal();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left;">
-        <span>📏</span> Size Guide & Measurements
+      <button class="mobile-nav-action-btn" onclick="toggleMobileNav(); openSizeGuideModal();">
+        <span>📏</span> <span>Size Guide & Measurements</span>
       </button>
       
       <!-- Mobile Currency Selector -->
-      <div style="background:var(--color-surface-subtle); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:12px 14px;">
-        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-muted); margin-bottom:8px;">
-          ✦ Currency Display
+      <div class="mobile-nav-currency-box">
+        <div class="mobile-curr-title">
+          ✦ Display Currency
         </div>
         <div class="mobile-currency-grid">
           <button type="button" class="mobile-curr-pill active" data-curr="NPR" onclick="setCurrency('NPR'); updateMobileCurrencyUI();">NPR (Rs.)</button>
@@ -181,18 +181,20 @@
         </div>
       </div>
 
-      <hr style="border:none; border-top:1px solid var(--color-border); margin:2px 0;">
-      <a href="?page=home" style="font-size:1.05rem; font-weight:600;">Home</a>
-      <a href="?page=shop" style="font-size:1.05rem; font-weight:600;">Silhouettes (Drop 08)</a>
-      <a href="?page=drops" style="font-size:1.05rem; font-weight:600;">The Limited Drops</a>
-      <a href="?page=atelier" style="font-size:1.05rem; font-weight:600;">Our Atelier & Story</a>
-      <a href="?page=checkout" style="font-size:1.05rem; font-weight:600; color:var(--color-crimson);">Express Checkout</a>
+      <hr class="mobile-nav-divider">
+      <nav class="mobile-nav-links">
+        <a href="?page=home" onclick="toggleMobileNav()">Home</a>
+        <a href="?page=shop" onclick="toggleMobileNav()">Silhouettes (Drop 08)</a>
+        <a href="?page=drops" onclick="toggleMobileNav()">The Limited Drops</a>
+        <a href="?page=atelier" onclick="toggleMobileNav()">Our Atelier & Story</a>
+        <a href="?page=checkout" onclick="toggleMobileNav()" class="mobile-checkout-link">Express Checkout →</a>
+      </nav>
       
-      <hr style="border:none; border-top:1px solid var(--color-border); margin:2px 0;">
-      <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; font-size:0.92rem; font-weight:600; color:var(--color-charcoal);">
-        <span>📸</span> Follow @prasuna.clo (70.6K) ↗
+      <hr class="mobile-nav-divider">
+      <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" class="mobile-nav-ig">
+        <span>📸</span> <span>Follow @prasuna.clo (70.6K) ↗</span>
       </a>
-      <div style="font-size:0.82rem; color:var(--color-muted); line-height:1.5;">
+      <div class="mobile-nav-footer-note">
         <p>🌸 Handmade Slow Fashion in Kathmandu</p>
         <p>No Repeat Prints • Worldwide Express Shipping</p>
       </div>
@@ -252,7 +254,7 @@
   <div class="modal-backdrop" id="quickview-modal">
     <div class="modal-card">
       <button class="modal-close-btn" onclick="closeQuickView()">✕</button>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:32px; padding: 32px;">
+      <div class="quickview-grid">
         <div>
           <div style="aspect-ratio:3/4; border-radius: var(--radius-md); overflow:hidden; background:var(--color-surface-subtle);">
             <img id="qv-img" src="" alt="Product Preview" style="width:100%; height:100%; object-fit:cover;">
@@ -311,7 +313,7 @@
 
   <!-- Size Guide Modal -->
   <div class="modal-backdrop" id="size-guide-modal">
-    <div class="modal-card" style="max-width:680px; padding:36px;">
+    <div class="modal-card size-guide-card">
       <button class="modal-close-btn" onclick="closeSizeGuideModal()">✕</button>
       <div class="section-tag">Prasuna Tailoring Standard</div>
       <h2 class="font-serif" style="font-size:1.8rem; margin-bottom:8px;">Garment Measurement Guide</h2>
@@ -351,7 +353,7 @@
 
   <!-- Custom Tailoring Modal -->
   <div class="modal-backdrop" id="custom-tailor-modal">
-    <div class="modal-card" style="max-width:580px; padding:36px;">
+    <div class="modal-card custom-measure-card">
       <button class="modal-close-btn" onclick="closeCustomMeasureModal()">✕</button>
       <div class="section-tag">Made For You 🪡</div>
       <h2 class="font-serif" style="font-size:1.8rem; margin-bottom:8px;">Custom Fit Atelier Form</h2>
@@ -360,7 +362,7 @@
       </p>
 
       <form onsubmit="event.preventDefault(); showToast('Custom dimensions noted! Adding to bag...'); closeCustomMeasureModal(); addToCart({id:'gulabi-set', name:'Gulabi Custom Tailored Set', color:'Olive Antique Gold', size:'Custom Fit', price_npr:14500, image:'assets/images/hero_festive.jpg', qty:1});">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div class="custom-measure-grid">
           <div>
             <label style="font-size:0.78rem; font-weight:600; display:block; margin-bottom:6px;">Bust (Inches)</label>
             <input type="number" step="0.5" placeholder="e.g. 35" required style="width:100%; padding:10px 14px; border:1px solid var(--color-border); border-radius:var(--radius-sm); background:var(--color-surface);">
@@ -549,10 +551,21 @@
       const drawer = document.getElementById('mobile-nav-drawer');
       const backdrop = document.getElementById('mobile-nav-backdrop');
       if (drawer && backdrop) {
-        drawer.classList.toggle('active');
-        backdrop.classList.toggle('active');
+        const willOpen = !drawer.classList.contains('active');
+        drawer.classList.toggle('active', willOpen);
+        backdrop.classList.toggle('active', willOpen);
+        document.body.style.overflow = willOpen ? 'hidden' : '';
       }
     }
-  </script>
+    function closeMobileNav() {
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const backdrop = document.getElementById('mobile-nav-backdrop');
+      if (drawer && backdrop) {
+        drawer.classList.remove('active');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    </script>
 </body>
 </html>
