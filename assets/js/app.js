@@ -55,6 +55,17 @@ function refreshDOMPrices() {
   if (currTrigger) {
     currTrigger.textContent = PrasunaState.currency;
   }
+  updateMobileCurrencyUI();
+}
+
+function updateMobileCurrencyUI() {
+  document.querySelectorAll('.mobile-curr-pill').forEach(btn => {
+    if (btn.getAttribute('data-curr') === PrasunaState.currency) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
 }
 
 // Set active currency
@@ -742,7 +753,7 @@ const HERO_LOOKS = [
     meta: 'Olive Gold Raw Silk • Pure Zardozi',
     productId: 'gulabi-set',
     priceNpr: 14500,
-    swatch: 'assets/images/gulabi_rose_detail.jpg',
+    swatch: 'assets/images/gulabi_rose.jpg',
     fabricTitle: 'Mulberry Raw Silk',
     fabricSpecs: '18 Hrs Hand Zardozi',
     fabricDna: '100% natural mulberry raw silk with zero synthetic blending. Hand-loomed on traditional wooden looms in Patan, Kathmandu.',

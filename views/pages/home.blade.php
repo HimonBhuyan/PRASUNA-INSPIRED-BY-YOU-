@@ -25,8 +25,10 @@
         <!-- Live Drop Countdown & Scarcity Meter -->
         <div class="drop-countdown-box">
           <div class="countdown-label">
-            <span><span>🌸</span> Drop 08 Archive Closes In</span>
-            <span style="font-size:0.7rem; color:var(--color-crimson); font-weight:700;">84% Claimed</span>
+            <span class="countdown-label-left">
+              <span class="pulse-dot"></span> Drop 08 Archive Closes In
+            </span>
+            <span class="scarcity-pill">84% Claimed</span>
           </div>
           <div class="countdown-timer">
             <div class="timer-unit">
@@ -82,7 +84,7 @@
           <!-- Fabric & Touch Inspector Card -->
           <div class="fabric-inspector-card" id="fabric-inspector" onclick="toggleFabricDetails(event)" title="Click to view artisan weave details">
             <div class="fabric-swatch-thumb">
-              <img id="fabric-swatch-img" src="assets/images/gulabi_rose_detail.jpg" alt="Artisan Silk Weave">
+              <img id="fabric-swatch-img" src="assets/images/gulabi_rose.jpg" alt="Artisan Silk Weave">
               <span class="fabric-swatch-zoom-icon">🔍</span>
             </div>
             <div class="fabric-info-col">
@@ -90,20 +92,22 @@
               <span class="fabric-material-title" id="fabric-title">Mulberry Raw Silk</span>
               <span class="fabric-specs-snippet" id="fabric-specs">18 Hrs Hand Zardozi</span>
             </div>
+            <span class="fabric-toggle-indicator" aria-hidden="true">▾</span>
 
             <!-- Expandable Detailed Weave Spec Popover -->
-            <div class="fabric-inspector-modal" id="fabric-detail-modal">
-              <div style="font-weight:700; color:var(--color-gold); font-size:0.85rem; margin-bottom:4px;">
-                ✦ Handloom Weave DNA
+            <div class="fabric-inspector-modal" id="fabric-detail-modal" onclick="event.stopPropagation()">
+              <div class="fabric-modal-header">
+                <span class="fabric-modal-title">✦ Handloom Weave DNA</span>
+                <button type="button" class="fabric-modal-close" onclick="toggleFabricDetails(event)" aria-label="Close weave details">×</button>
               </div>
-              <p id="fabric-dna-desc" style="color:#DDD5CC; font-size:0.75rem; margin-bottom:10px; line-height:1.5;">
+              <p id="fabric-dna-desc" class="fabric-dna-text">
                 100% natural mulberry raw silk with zero synthetic blending. Hand-loomed on traditional wooden looms in Patan, Kathmandu.
               </p>
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.72rem; color:#A89F95; border-top:1px solid rgba(255,255,255,0.12); padding-top:8px;">
-                <div>Thread Count: <strong style="color:#fff;" id="fabric-thread-count">320 TPI</strong></div>
-                <div>Natural Dye: <strong style="color:#fff;" id="fabric-dye">Mineral Gold</strong></div>
-                <div>Breathability: <strong style="color:#fff;">High</strong></div>
-                <div>Weight: <strong style="color:#fff;" id="fabric-weight">160 GSM</strong></div>
+              <div class="fabric-specs-grid">
+                <div class="spec-item"><span class="spec-label">Thread Count:</span> <strong id="fabric-thread-count">320 TPI</strong></div>
+                <div class="spec-item"><span class="spec-label">Natural Dye:</span> <strong id="fabric-dye">Mineral Gold</strong></div>
+                <div class="spec-item"><span class="spec-label">Breathability:</span> <strong>High</strong></div>
+                <div class="spec-item"><span class="spec-label">Weight:</span> <strong id="fabric-weight">160 GSM</strong></div>
               </div>
             </div>
           </div>
@@ -187,18 +191,20 @@
 
         <!-- Editorial Hero Carousel Controls & Pagination -->
         <div class="hero-controls-bar">
-          <div class="hero-pagination-counter">
-            <span class="active-num" id="hero-look-num">01</span>
-            <span class="total-num">/ 03</span>
-          </div>
+          <div class="hero-controls-nav-row">
+            <div class="hero-pagination-counter">
+              <span class="active-num" id="hero-look-num">01</span>
+              <span class="total-num">/ 03</span>
+            </div>
 
-          <div class="hero-progress-container">
-            <div class="hero-progress-fill" id="hero-progress-bar"></div>
-          </div>
+            <div class="hero-progress-container">
+              <div class="hero-progress-fill" id="hero-progress-bar"></div>
+            </div>
 
-          <div style="display:flex; align-items:center; gap:6px;">
-            <button type="button" class="hero-nav-arrow" onclick="prevHeroLook()" aria-label="Previous Look">‹</button>
-            <button type="button" class="hero-nav-arrow" onclick="nextHeroLook()" aria-label="Next Look">›</button>
+            <div class="hero-arrow-group">
+              <button type="button" class="hero-nav-arrow" onclick="prevHeroLook()" aria-label="Previous Look">‹</button>
+              <button type="button" class="hero-nav-arrow" onclick="nextHeroLook()" aria-label="Next Look">›</button>
+            </div>
           </div>
 
           <!-- Multi-Look Switcher Buttons -->
@@ -644,27 +650,27 @@
 <!-- Signature Keepsake Care Letter Section -->
 <section style="padding:64px 0; background:var(--color-bg); border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);">
   <div class="container">
-    <div style="background:#EFE6DD; border:2px dashed #C8B9A6; border-radius:var(--radius-lg); padding:48px 40px; position:relative; box-shadow:var(--shadow-sm); max-width:860px; margin:0 auto;">
-      <div style="position:absolute; top:-16px; right:32px; background:var(--color-crimson); color:#fff; padding:4px 16px; border-radius:var(--radius-full); font-size:0.75rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">
+    <div class="care-letter-box">
+      <div class="care-letter-badge">
         From Our Kathmandu Atelier 🌸
       </div>
 
-      <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:36px; align-items:center;">
+      <div class="care-letter-grid">
         <div>
-          <h3 class="font-serif" style="font-size:1.8rem; font-style:italic; margin-bottom:14px; color:var(--color-charcoal);">
+          <h3 class="font-serif care-letter-heading">
             "Hey love, Before you open this package..."
           </h3>
-          <p style="font-size:0.95rem; color:var(--color-body); line-height:1.75; margin-bottom:16px;">
+          <p class="care-letter-text">
             Your piece is made with soft fabrics and lots of love, so please treat it gently. Wash it separately, always hand wash in cold water, avoid machine washing, dry it in the shade, and iron on low heat to keep it looking beautiful for longer.
           </p>
-          <div style="font-family:var(--font-nepali); font-size:1.25rem; color:var(--color-crimson); font-weight:600;">
+          <div class="care-letter-signoff">
             With love,<br>
             प्रसूना 🪡
           </div>
         </div>
 
-        <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-md);">
-          <img src="assets/images/packaging_unboxing.jpg" alt="Prasuna Packaging and Care Note" style="width:100%; height:auto; object-fit:cover;">
+        <div class="care-letter-media">
+          <img src="assets/images/packaging_unboxing.jpg" alt="Prasuna Packaging and Care Note">
         </div>
       </div>
     </div>

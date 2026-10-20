@@ -33,7 +33,7 @@
   <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border); padding:16px 0; margin-bottom:36px; flex-wrap:wrap; gap:16px;">
     
     <!-- Category Pills -->
-    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+    <div class="category-tabs" style="margin-bottom:0; padding:0;">
       <button class="tab-btn active" onclick="filterCategory('All', this)">All ({{ count($products) }})</button>
       <button class="tab-btn" onclick="filterCategory('Mul Cotton & Applique', this)">Mul Cotton & Applique</button>
       <button class="tab-btn" onclick="filterCategory('Camisole Tunics', this)">Camisole Tunics</button>

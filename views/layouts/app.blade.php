@@ -54,7 +54,12 @@
     <div class="container-wide">
       <div class="header-inner">
         
-        <!-- Left Navigation -->
+        <!-- Mobile Menu Toggle (Left on mobile <= 768px) -->
+        <button class="action-btn mobile-menu-toggle" onclick="toggleMobileNav()" aria-label="Toggle Navigation Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <!-- Left Navigation (Desktop) -->
         <nav aria-label="Main Navigation">
           <ul class="nav-links">
             <li>
@@ -84,8 +89,8 @@
         <!-- Right Header Actions -->
         <div class="header-actions">
           
-          <!-- Currency Selector -->
-          <div class="currency-dropdown">
+          <!-- Currency Selector (Desktop only) -->
+          <div class="currency-dropdown desktop-only-action">
             <button class="currency-trigger" id="currency-toggle-btn" aria-label="Select Currency">
               <span id="current-currency-label">NPR</span>
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -122,13 +127,13 @@
             <span id="theme-toggle-icon" style="font-size:1.15rem;">🕯️</span>
           </button>
 
-          <!-- Size Guide Trigger -->
-          <button class="action-btn" onclick="openSizeGuideModal()" title="Size Guide & Measurements" aria-label="Size Guide">
+          <!-- Size Guide Trigger (Desktop only) -->
+          <button class="action-btn desktop-only-action" onclick="openSizeGuideModal()" title="Size Guide & Measurements" aria-label="Size Guide">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21.3 15.3l-6.6 6.6c-.4.4-1 .4-1.4 0l-11.6-11.6c-.4-.4-.4-1 0-1.4l6.6-6.6c.4-.4 1-.4 1.4 0l11.6 11.6c.4.4.4 1 0 1.4z"/><path d="M7 6l2 2"/><path d="M10 9l2 2"/><path d="M13 12l2 2"/><path d="M16 15l2 2"/></svg>
           </button>
 
-          <!-- Instagram Link -->
-          <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" class="action-btn" title="@prasuna.clo on Instagram" aria-label="Instagram">
+          <!-- Instagram Link (Desktop only) -->
+          <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" class="action-btn desktop-only-action" title="@prasuna.clo on Instagram" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
 
@@ -136,11 +141,6 @@
           <button class="action-btn" onclick="openCartDrawer()" title="View Shopping Bag" aria-label="Shopping Bag">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span class="action-badge cart-count-badge" style="display:none;">0</span>
-          </button>
-
-          <!-- Mobile Nav Toggle -->
-          <button class="action-btn mobile-menu-toggle" onclick="toggleMobileNav()" aria-label="Toggle Menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
 
         </div>
@@ -155,23 +155,46 @@
       <div class="brand-title" style="font-size:1.4rem;">PRASUNA</div>
       <button class="drawer-close" onclick="toggleMobileNav()">✕</button>
     </div>
-    <div style="padding: 24px; display:flex; flex-direction:column; gap:18px;">
-      <button onclick="toggleMobileNav(); openSearchDrawer();" style="display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; text-align:left; color:var(--color-gold-hover);">
+    <div style="padding: 20px 24px; display:flex; flex-direction:column; gap:16px; overflow-y:auto;">
+      <button onclick="toggleMobileNav(); openSearchDrawer();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left; color:var(--color-gold-hover);">
         <span>🔍</span> Search Silhouettes
       </button>
-      <button onclick="toggleCandlelightTheme();" style="display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:600; text-align:left;">
+      <button onclick="toggleCandlelightTheme();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left;">
         <span id="mobile-theme-icon">🕯️</span> <span id="mobile-theme-label">Candlelight View</span>
       </button>
-      <hr style="border:none; border-top:1px solid var(--color-border); margin:4px 0;">
-      <a href="?page=home" style="font-size:1.1rem; font-weight:600;">Home</a>
-      <a href="?page=shop" style="font-size:1.1rem; font-weight:600;">Silhouettes (Drop 08)</a>
-      <a href="?page=drops" style="font-size:1.1rem; font-weight:600;">The Limited Drops</a>
-      <a href="?page=atelier" style="font-size:1.1rem; font-weight:600;">Our Atelier & Story</a>
-      <a href="?page=checkout" style="font-size:1.1rem; font-weight:600; color:var(--color-crimson);">Express Checkout</a>
-      <hr style="border:none; border-top:1px solid var(--color-border); margin:4px 0;">
-      <div style="font-size:0.86rem; color:var(--color-muted);">
-        <p>🌸 Nepali Slow Fashion</p>
-        <p>No Repeat Prints • Worldwide Shipping</p>
+      <button onclick="toggleMobileNav(); openSizeGuideModal();" style="display:flex; align-items:center; gap:10px; font-size:1.02rem; font-weight:600; text-align:left;">
+        <span>📏</span> Size Guide & Measurements
+      </button>
+      
+      <!-- Mobile Currency Selector -->
+      <div style="background:var(--color-surface-subtle); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:12px 14px;">
+        <div style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-muted); margin-bottom:8px;">
+          ✦ Currency Display
+        </div>
+        <div class="mobile-currency-grid">
+          <button type="button" class="mobile-curr-pill active" data-curr="NPR" onclick="setCurrency('NPR'); updateMobileCurrencyUI();">NPR (Rs.)</button>
+          <button type="button" class="mobile-curr-pill" data-curr="USD" onclick="setCurrency('USD'); updateMobileCurrencyUI();">USD ($)</button>
+          <button type="button" class="mobile-curr-pill" data-curr="AUD" onclick="setCurrency('AUD'); updateMobileCurrencyUI();">AUD (A$)</button>
+          <button type="button" class="mobile-curr-pill" data-curr="GBP" onclick="setCurrency('GBP'); updateMobileCurrencyUI();">GBP (£)</button>
+          <button type="button" class="mobile-curr-pill" data-curr="EUR" onclick="setCurrency('EUR'); updateMobileCurrencyUI();">EUR (€)</button>
+          <button type="button" class="mobile-curr-pill" data-curr="INR" onclick="setCurrency('INR'); updateMobileCurrencyUI();">INR (₹)</button>
+        </div>
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--color-border); margin:2px 0;">
+      <a href="?page=home" style="font-size:1.05rem; font-weight:600;">Home</a>
+      <a href="?page=shop" style="font-size:1.05rem; font-weight:600;">Silhouettes (Drop 08)</a>
+      <a href="?page=drops" style="font-size:1.05rem; font-weight:600;">The Limited Drops</a>
+      <a href="?page=atelier" style="font-size:1.05rem; font-weight:600;">Our Atelier & Story</a>
+      <a href="?page=checkout" style="font-size:1.05rem; font-weight:600; color:var(--color-crimson);">Express Checkout</a>
+      
+      <hr style="border:none; border-top:1px solid var(--color-border); margin:2px 0;">
+      <a href="https://www.instagram.com/prasuna.clo/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; font-size:0.92rem; font-weight:600; color:var(--color-charcoal);">
+        <span>📸</span> Follow @prasuna.clo (70.6K) ↗
+      </a>
+      <div style="font-size:0.82rem; color:var(--color-muted); line-height:1.5;">
+        <p>🌸 Handmade Slow Fashion in Kathmandu</p>
+        <p>No Repeat Prints • Worldwide Express Shipping</p>
       </div>
     </div>
   </aside>
@@ -376,7 +399,7 @@
         <video id="atelier-modal-video" controls playsinline style="width:100%; height:100%; object-fit:cover;" src="assets/videos/hero_runway_walk.mp4" poster="assets/images/atelier_crafting.jpg">
         </video>
       </div>
-      <div style="padding:24px 32px; background:#1A1715;">
+      <div class="atelier-modal-body" style="background:#1A1715;">
         <div style="color:var(--color-gold); font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:6px;">
           ✦ The Stitches of Kathmandu • Documentary Short
         </div>

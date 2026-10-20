@@ -29,9 +29,9 @@
   </div>
 
   <!-- 3 Story Pillars Grid -->
-  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:40px; margin-bottom:80px;">
+  <div class="story-pillars-grid">
     
-    <div style="background:var(--color-surface); padding:32px; border-radius:var(--radius-md); border:1px solid var(--color-border); box-shadow:var(--shadow-sm);">
+    <div class="pillar-card">
       <div style="font-size:2.2rem; margin-bottom:14px;">🪡</div>
       <h3 class="font-serif" style="font-size:1.35rem; margin-bottom:10px;">No Repeat Prints</h3>
       <p style="font-size:0.9rem; color:var(--color-muted); line-height:1.6;">
@@ -39,7 +39,7 @@
       </p>
     </div>
 
-    <div style="background:var(--color-surface); padding:32px; border-radius:var(--radius-md); border:1px solid var(--color-border); box-shadow:var(--shadow-sm);">
+    <div class="pillar-card">
       <div style="font-size:2.2rem; margin-bottom:14px;">🌸</div>
       <h3 class="font-serif" style="font-size:1.35rem; margin-bottom:10px;">Fair Living Wages</h3>
       <p style="font-size:0.9rem; color:var(--color-muted); line-height:1.6;">
@@ -47,7 +47,7 @@
       </p>
     </div>
 
-    <div style="background:var(--color-surface); padding:32px; border-radius:var(--radius-md); border:1px solid var(--color-border); box-shadow:var(--shadow-sm);">
+    <div class="pillar-card">
       <div style="font-size:2.2rem; margin-bottom:14px;">💌</div>
       <h3 class="font-serif" style="font-size:1.35rem; margin-bottom:10px;">The Keepsake Ritual</h3>
       <p style="font-size:0.9rem; color:var(--color-muted); line-height:1.6;">
@@ -58,10 +58,10 @@
   </div>
 
   <!-- Founder Feature Section -->
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center; background:var(--color-surface-subtle); border-radius:var(--radius-lg); padding:56px; margin-bottom:80px;">
+  <div class="founder-feature-card">
     <div>
       <span class="section-tag">A Note From Our Founder</span>
-      <h2 class="font-serif" style="font-size:2.2rem; margin:8px 0 16px;">"You Made Prasuna Happen"</h2>
+      <h2 class="font-serif" style="font-size:clamp(1.6rem, 3.5vw, 2.2rem); margin:8px 0 16px;">"You Made Prasuna Happen"</h2>
       
       <p style="font-size:0.95rem; color:var(--color-body); line-height:1.7; margin-bottom:16px;">
         "When I posted our very first Gulabi slit kurti on Instagram, I never imagined that women from Sydney to Dallas, London to Kathmandu would feel so seen in our designs.
@@ -90,7 +90,7 @@
   </div>
 
   <!-- Unboxing & Packaging Showcase -->
-  <div style="display:grid; grid-template-columns: 1fr 1.1fr; gap:56px; align-items:center;">
+  <div class="unboxing-feature-grid">
     <div>
       <div style="border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-md);">
         <img src="assets/images/packaging_unboxing.jpg" alt="Prasuna Luxury Packaging Experience" style="width:100%; height:auto; object-fit:cover;">

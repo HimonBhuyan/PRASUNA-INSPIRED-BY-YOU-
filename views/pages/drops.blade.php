@@ -52,9 +52,9 @@
   </div>
 
   <!-- VIP Drop Notification Box -->
-  <div id="vip-form-box" style="background:var(--color-charcoal); color:#fff; border-radius:var(--radius-lg); padding:56px; text-align:center; max-width:820px; margin:0 auto; box-shadow:var(--shadow-lg);">
+  <div id="vip-form-box" class="vip-banner-box">
     <div style="font-size:2.2rem; margin-bottom:12px;">🌸</div>
-    <h2 class="font-serif" style="color:#fff; font-size:2.2rem; margin-bottom:12px;">Be the First Through The Doors</h2>
+    <h2 class="font-serif" style="color:#fff; font-size:clamp(1.6rem, 4vw, 2.2rem); margin-bottom:12px;">Be the First Through The Doors</h2>
     <p style="color:#B3ADA7; font-size:0.95rem; max-width:540px; margin:0 auto 28px; line-height:1.6;">
       Drop 09 (Winter Velvet Heirlooms) will be strictly limited to 30 pieces worldwide. Enter your email or WhatsApp to receive private shopping access 15 minutes ahead of social media release.
     </p>
