@@ -1268,28 +1268,7 @@ h1, h2, h3, h4, .font-serif {
   font-size: 0.76rem;
 }
 
-/* Fabric Detail Modal Popover */
-.fabric-inspector-modal {
-  display: none;
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  width: 275px;
-  background: rgba(22, 20, 19, 0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  border-radius: var(--radius-md);
-  padding: 14px;
-  z-index: 50;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-  cursor: default;
-}
 
-.fabric-inspector-modal.show {
-  display: block;
-  animation: modalEnter 0.2s ease;
-}
 
 /* Scarcity Bar in Hero */
 .scarcity-wrap {
