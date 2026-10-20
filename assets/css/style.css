@@ -625,9 +625,11 @@ h1, h2, h3, h4, .font-serif {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1.08fr;
-  gap: 44px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
   align-items: center;
+  max-width: 1220px;
+  margin: 0 auto;
 }
 
 .hero-content {
@@ -833,6 +835,9 @@ h1, h2, h3, h4, .font-serif {
 /* Hero Media Display */
 .hero-media {
   position: relative;
+  max-width: 480px;
+  margin-left: auto;
+  width: 100%;
 }
 
 .hero-image-wrap {
@@ -841,7 +846,10 @@ h1, h2, h3, h4, .font-serif {
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   aspect-ratio: 3/4;
+  max-width: 420px;
+  max-height: 540px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .hero-image-wrap > img,
@@ -922,19 +930,20 @@ h1, h2, h3, h4, .font-serif {
 
 .hero-floating-card {
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  background: rgba(255, 255, 255, 0.92);
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
-  padding: 18px 22px;
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px 16px;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
 }
 
 .floating-product-title {
@@ -1323,26 +1332,27 @@ h1, h2, h3, h4, .font-serif {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
-  gap: 14px;
+  margin-top: 14px;
+  gap: 10px;
+  max-width: 480px;
+  width: 100%;
 }
 
 .hero-controls-nav-row {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex: 1;
+  gap: 10px;
 }
 
 .hero-arrow-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .hero-pagination-counter {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-charcoal);
   letter-spacing: 0.08em;
@@ -1353,17 +1363,16 @@ h1, h2, h3, h4, .font-serif {
 
 .hero-pagination-counter .active-num {
   color: var(--color-crimson);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
 }
 
 .hero-pagination-counter .total-num {
   color: var(--color-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .hero-progress-container {
-  flex: 1;
-  max-width: 120px;
+  width: 70px;
   height: 3px;
   background: var(--color-border);
   border-radius: var(--radius-full);
@@ -1379,8 +1388,8 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .hero-nav-arrow {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -1390,7 +1399,7 @@ h1, h2, h3, h4, .font-serif {
   justify-content: center;
   cursor: pointer;
   transition: var(--transition);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .hero-nav-arrow:hover {
@@ -1403,22 +1412,23 @@ h1, h2, h3, h4, .font-serif {
 .hero-look-tabs {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .hero-look-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 5px;
+  padding: 5px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 600;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   color: var(--color-charcoal);
   transition: var(--transition);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .hero-look-btn:hover,
@@ -2793,6 +2803,14 @@ h1, h2, h3, h4, .font-serif {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    max-width: 100%;
+  }
+  .hero-media {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .hero-image-wrap {
+    max-width: 440px;
   }
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3254,6 +3272,14 @@ h1, h2, h3, h4, .font-serif {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    max-width: 100%;
+  }
+  .hero-media {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .hero-image-wrap {
+    max-width: 440px;
   }
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3374,6 +3400,12 @@ h1, h2, h3, h4, .font-serif {
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 28px;
+    max-width: 100%;
+  }
+
+  .hero-media {
+    max-width: 100%;
+    margin: 0;
   }
 
   .hero-subhead {
@@ -3439,6 +3471,8 @@ h1, h2, h3, h4, .font-serif {
   .hero-image-wrap {
     aspect-ratio: 3/4;
     border-radius: var(--radius-md);
+    max-width: 100%;
+    max-height: none;
   }
 
   .floating-badge {
